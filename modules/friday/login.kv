@@ -1,0 +1,146 @@
+#: import FadeTransition kivy.uix.screenmanager.FadeTransition
+
+<Manager>:
+    transition: FadeTransition()
+    Greet:
+    Register:
+    Signin:
+
+<Greet>:
+    name: "Greet"
+    FloatLayout:
+        canvas.before:
+            Rectangle:
+                pos: self.pos
+                size: self.size
+                source: "data/loginator/res/bg.jpg"
+        Label:
+            color: 0.65, 0.65, 0.65, 0.6
+            font_name: "data/loginator/res/Pacifico.ttf"
+            text: "Welcome to Friday"
+            font_size: "25dp"
+            halign: 'center'
+            valign: 'middle'
+            pos_hint: {"x": 0, "y": 0.3}
+        Label:
+            color: 0.8, 0.8, 0.8, 1
+            font_name: "data/loginator/res/Roboto.ttf"
+            text: "or"
+            font_size: "19dp"
+            halign: 'center'
+            valign: 'middle'
+            pos_hint: {"x": 0, "y": -0.08}
+        Button:
+            on_release: root.manager.current = "Register"
+            background_normal: "data/loginator/res/button.png"
+            background_down: "data/loginator/res/buttond.png"
+            pos_hint: {"right": .75, "top": 0.5}
+            size_hint: (.5,.042)
+            Label:
+                font_name: "data/loginator/res/Lobster.otf"
+                font_size: "17dp"
+                center: self.parent.center
+                text: "Register"
+
+        Button:
+            on_release: root.manager.current = "Sign in"
+            background_normal: "data/loginator/res/button2.png"
+            background_down: "data/loginator/res/button2d.png"
+            pos_hint: {"right": .657, "top": 0.38}
+            size_hint: (.3,.042)
+            Label:
+                font_name: "data/loginator/res/Lobster.otf"
+                font_size: "17dp"
+                center: self.parent.center
+                text: "Sign in"
+
+<Register>:
+    name: "Register"
+    FloatLayout:
+        canvas.before:
+            Rectangle:
+                pos: self.pos
+                size: self.size
+                source: "data/loginator/res/bg.jpg"
+        Button:
+            on_release: root.manager.current = "Greet"
+            background_normal: "data/loginator/res/back.png"
+            background_down: "data/loginator/res/back.png"
+            pos_hint: {"right": .15, "top": 1}
+            size_hint: (0.15625, 0.122070313)
+
+
+<Signin>:
+    name: "Sign in"
+    FloatLayout:
+        canvas.before:
+            Rectangle:
+                pos: self.pos
+                size: self.size
+                source: "data/loginator/res/bg.jpg"
+
+        Label:
+            color: 0.65, 0.65, 0.65, 0.6
+            font_name: "data/loginator/res/Pacifico.ttf"
+            text: "Friday"
+            font_size: "25dp"
+            halign: 'center'
+            valign: 'middle'
+            pos_hint: {"x": 0, "y": 0.3}
+
+        Label:
+            color: 0.8, 0.8, 0.8, 1
+            font_name: "data/loginator/res/Roboto.ttf"
+            text: "Username"
+            font_size: "19dp"
+            halign: 'center'
+            valign: 'middle'
+            pos_hint: {"x": -0.1, "y": 0.05}
+
+        TextInput:
+            multiline: False
+            font_name: "data/loginator/res/Cantarell.ttf"
+            font_size: "13dp"
+            halign: 'center'
+            valign: 'middle'
+            size_hint: (.4,.043)
+            pos_hint: {"x": 0.3, "y": 0.475}
+            center: self.center
+
+        Label:
+            color: 0.8, 0.8, 0.8, 1
+            font_name: "data/loginator/res/Roboto.ttf"
+            text: "Password"
+            font_size: "19dp"
+            halign: 'center'
+            valign: 'middle'
+            pos_hint: {"x": -0.1, "y": -0.1}
+
+        TextInput:
+            multiline: False
+            password: True
+            font_name: "data/loginator/res/Cantarell.ttf"
+            font_size: "13dp"
+            halign: 'center'
+            valign: 'middle'
+            size_hint: (.4,.043)
+            pos_hint: {"x": 0.3, "y": 0.324}
+            center: self.center
+
+        Button:
+            background_normal: "data/loginator/res/button2.png"
+            background_down: "data/loginator/res/button2d.png"
+            pos_hint: {"right": .657, "top": 0.2}
+            size_hint: (.3,.042)
+            Label:
+                font_name: "data/loginator/res/Lobster.otf"
+                font_size: "17dp"
+                center: self.parent.center
+                text: "Sign in"
+
+        Button:
+            on_release: root.manager.current = "Greet"
+            background_normal: "data/loginator/res/back.png"
+            background_down: "data/loginator/res/back.png"
+            pos_hint: {"right": .15, "top": 1}
+            size_hint: (0.15625, 0.122070313)
