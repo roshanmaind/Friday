@@ -2,9 +2,9 @@
 
 <Manager>:
     transition: FadeTransition()
+    Register:
     Greet:
     Signin:
-    Register:
 
 <Greet>:
     name: "Greet"
@@ -68,6 +68,111 @@
             background_down: "data/loginator/res/back.png"
             pos_hint: {"right": .15, "top": 1}
             size_hint: (0.15625, 0.122070313)
+
+        Label:
+            color: 0.8, 0.8, 0.8, 1
+            font_name: "data/loginator/res/Roboto.ttf"
+            text: "First Name"
+            font_size: "19dp"
+            halign: 'center'
+            valign: 'middle'
+            pos_hint: {"x": -0.1, "y": 0.38}
+        TextInput:
+            multiline: False
+            font_name: "data/loginator/res/Cantarell.ttf"
+            font_size: "13dp"
+            halign: 'center'
+            valign: 'middle'
+            size_hint: (.4,.043)
+            pos_hint: {"x": 0.3, "y": 0.8}
+            center: self.center
+
+        Label:
+            color: 0.8, 0.8, 0.8, 1
+            font_name: "data/loginator/res/Roboto.ttf"
+            text: "Last Name"
+            font_size: "19dp"
+            halign: 'center'
+            valign: 'middle'
+            pos_hint: {"x": -0.1, "y": 0.26}
+        TextInput:
+            multiline: False
+            font_name: "data/loginator/res/Cantarell.ttf"
+            font_size: "13dp"
+            halign: 'center'
+            valign: 'middle'
+            size_hint: (.4,.043)
+            pos_hint: {"x": 0.3, "y": 0.68}
+            center: self.center
+
+        Label:
+            color: 0.8, 0.8, 0.8, 1
+            font_name: "data/loginator/res/Roboto.ttf"
+            text: "Username"
+            font_size: "19dp"
+            halign: 'center'
+            valign: 'middle'
+            pos_hint: {"x": -0.1, "y": 0.14}
+        TextInput:
+            multiline: False
+            font_name: "data/loginator/res/Cantarell.ttf"
+            font_size: "13dp"
+            halign: 'center'
+            valign: 'middle'
+            size_hint: (.4,.043)
+            pos_hint: {"x": 0.3, "y": 0.56}
+            center: self.center
+
+        Label:
+            color: 0.8, 0.8, 0.8, 1
+            font_name: "data/loginator/res/Roboto.ttf"
+            text: "Password"
+            font_size: "19dp"
+            halign: 'center'
+            valign: 'middle'
+            pos_hint: {"x": -0.1, "y": 0.02}
+
+        TextInput:
+            multiline: False
+            password: True
+            font_name: "data/loginator/res/Cantarell.ttf"
+            font_size: "13dp"
+            halign: 'center'
+            valign: 'middle'
+            size_hint: (.4,.043)
+            pos_hint: {"x": 0.3, "y": 0.44}
+            center: self.center
+
+        Label:
+            color: 0.8, 0.8, 0.8, 1
+            font_name: "data/loginator/res/Roboto.ttf"
+            text: "Confirm Password"
+            font_size: "19dp"
+            halign: 'center'
+            valign: 'middle'
+            pos_hint: {"x": -0.03, "y": -0.1}
+
+        TextInput:
+            multiline: False
+            password: True
+            font_name: "data/loginator/res/Cantarell.ttf"
+            font_size: "13dp"
+            halign: 'center'
+            valign: 'middle'
+            size_hint: (.4,.043)
+            pos_hint: {"x": 0.3, "y": 0.32}
+            center: self.center
+
+        Button:
+            background_normal: "data/loginator/res/button2.png"
+            background_down: "data/loginator/res/button2d.png"
+            pos_hint: {"right": .657, "top": 0.15}
+            size_hint: (.3,.042)
+            Label:
+                font_name: "data/loginator/res/Lobster.otf"
+                font_size: "17dp"
+                center: self.parent.center
+                text: "Sign up"
 
 
 <Signin>:
