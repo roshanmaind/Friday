@@ -11,6 +11,7 @@ if __name__ == "__main__":
     if not user["logged_in"]:
         user = friday.loginator.login(user)
         user["logged_in"] = True
+        print("Signed in as", user["first_name"], user["last_name"])
     if not user["twitter_linked"]:
         user = twitter.linker.link(user)
         user["twitter_linked"] = True
