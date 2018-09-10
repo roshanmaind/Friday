@@ -3,8 +3,8 @@
 <Manager>:
     transition: FadeTransition()
     Greet:
-    Register:
     Signin:
+    Register:
 
 <Greet>:
     name: "Greet"
@@ -164,6 +164,7 @@
             center: self.center
 
         Button:
+            on_press: root.sign_up_click()
             background_normal: "data/loginator/res/button2.png"
             background_down: "data/loginator/res/button2d.png"
             pos_hint: {"right": .657, "top": 0.15}
@@ -177,6 +178,8 @@
 
 <Signin>:
     name: "Sign in"
+    user: sign_in_user.text
+    passwd: sign_in_pass.text
     FloatLayout:
         canvas.before:
             Rectangle:
@@ -203,6 +206,8 @@
             pos_hint: {"x": -0.1, "y": 0.05}
 
         TextInput:
+            id: sign_in_user
+            text: root.user
             multiline: False
             font_name: "data/loginator/res/Cantarell.ttf"
             font_size: "13dp"
@@ -222,6 +227,8 @@
             pos_hint: {"x": -0.1, "y": -0.1}
 
         TextInput:
+            id: sign_in_pass
+            text: root.passwd
             multiline: False
             password: True
             font_name: "data/loginator/res/Cantarell.ttf"
@@ -247,7 +254,17 @@
             valign: 'middle'
             pos_hint: {"x": -0.038, "y": -0.233}
 
+        Label:
+            color: 0.8, 0.1, 0.15, 1
+            font_name: "data/loginator/res/Roboto.ttf"
+            text: root.message
+            font_size: "12dp"
+            halign: 'center'
+            valign: 'middle'
+            pos_hint: {"x": 0.01, "y": -0.28}
+
         Button:
+            on_release: root.sign_in_click()
             background_normal: "data/loginator/res/button2.png"
             background_down: "data/loginator/res/button2d.png"
             pos_hint: {"right": .657, "top": 0.15}
