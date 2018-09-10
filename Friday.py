@@ -6,7 +6,7 @@ import pickle
 
 
 if __name__ == "__main__":
-    with open("data/friday/user.pkl", "rb") as file:
+    with open("data/friday/last_session.pkl", "rb") as file:
         user = pickle.load(file)
     if not user["logged in"]:
         user = friday.loginator.login(user)
