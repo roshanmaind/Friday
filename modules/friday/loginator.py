@@ -101,5 +101,4 @@ def login(user):
     global g_user
     g_user = user
     Login().run()
-    print("Signed in as", g_user["first_name"], g_user["last_name"])
     return g_user
