@@ -30,6 +30,3 @@ class Login(App):
 def login(user):
     Login(user).run()
     return user
-
-
-login(5)
