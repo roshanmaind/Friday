@@ -205,6 +205,7 @@
     name: "Sign in"
     user: sign_in_user.text
     passwd: sign_in_pass.text
+    remember: chk.active
     FloatLayout:
         canvas.before:
             Rectangle:
@@ -266,7 +267,7 @@
 
         CheckBox:
             id: chk
-            active: True
+            active: root.remember
             pos_hint: {"x": 0.6, "y": .245}
             size_hint: (0.04,0.04)
 

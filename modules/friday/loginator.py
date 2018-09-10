@@ -1,7 +1,7 @@
 from kivy.app import App
 from kivy.config import Config
 from kivy.uix.screenmanager import ScreenManager, Screen, FadeTransition
-from kivy.properties import StringProperty, ObjectProperty
+from kivy.properties import StringProperty, BooleanProperty
 import h5py
 
 Config.set('graphics', 'width', '500')
@@ -67,6 +67,7 @@ class Signin(Screen):
     user = StringProperty("")
     passwd = StringProperty("")
     message = StringProperty("")
+    remember = BooleanProperty(True)
 
     def __init__(self, **kwargs):
         super(Signin, self).__init__(**kwargs)
@@ -76,6 +77,7 @@ class Signin(Screen):
             for i in range(len(database)):
                 database[i] = [attrib.decode("utf8") for attrib in database[i]]
             self.database = database
+        self.remember = True
 
     def sign_in_click(self):
         global g_user
@@ -84,6 +86,7 @@ class Signin(Screen):
                 g_user["first_name"] = entry[0]
                 g_user["last_name"] = entry[1]
                 g_user["username"] = self.user
+                g_user["logged_in"] = True if self.remember else False
                 g_user["twitter_linked"] = True if entry[4] == "Y" else False
                 App.get_running_app().stop()
                 return
