@@ -55,6 +55,42 @@ class Register(Screen):
             self.passwd2 = ""
             return
 
+        if self.user == "":
+            self.message = "Username can't be empty"
+            self.first = ""
+            self.last = ""
+            self.user = ""
+            self.passwd = ""
+            self.passwd2 = ""
+            return
+
+        if self.first == "":
+            self.message = "First name can't be empty"
+            self.first = ""
+            self.last = ""
+            self.user = ""
+            self.passwd = ""
+            self.passwd2 = ""
+            return
+
+        if self.last == "":
+            self.message = "Last name can't be empty"
+            self.first = ""
+            self.last = ""
+            self.user = ""
+            self.passwd = ""
+            self.passwd2 = ""
+            return
+
+        if self.passwd == "":
+            self.message = "Password can't be empty"
+            self.first = ""
+            self.last = ""
+            self.user = ""
+            self.passwd = ""
+            self.passwd2 = ""
+            return
+
         self.database.append([str(self.first), str(self.last), str(self.user), str(self.passwd), "N"])
         for i in range(len(self.database)):
             self.database[i] = [attrib.encode("utf8") for attrib in self.database[i]]
