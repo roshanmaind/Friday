@@ -6,4 +6,3 @@ users = [me]
 
 with h5py.File("data/friday/users.hdf5", "w") as file:
     file.create_dataset("users", data=users)
-
