@@ -2,9 +2,9 @@
 
 <Manager>:
     transition: FadeTransition()
+    Register:
     Greet:
     Signin:
-    Register:
 
 <Greet>:
     name: "Greet"
@@ -56,6 +56,12 @@
 
 <Register>:
     name: "Register"
+    first: first_text.text
+    last: last_text.text
+    user: user_text.text
+    passwd: passwd_text.text
+    passwd2: passwd2_text.text
+
     FloatLayout:
         canvas.before:
             Rectangle:
@@ -78,6 +84,8 @@
             valign: 'middle'
             pos_hint: {"x": -0.1, "y": 0.38}
         TextInput:
+            id: first_text
+            text: root.first
             multiline: False
             font_name: "data/loginator/res/Cantarell.ttf"
             font_size: "13dp"
@@ -96,6 +104,8 @@
             valign: 'middle'
             pos_hint: {"x": -0.1, "y": 0.26}
         TextInput:
+            id: last_text
+            text: root.last
             multiline: False
             font_name: "data/loginator/res/Cantarell.ttf"
             font_size: "13dp"
@@ -114,6 +124,8 @@
             valign: 'middle'
             pos_hint: {"x": -0.1, "y": 0.14}
         TextInput:
+            id: user_text
+            text: root.user
             multiline: False
             font_name: "data/loginator/res/Cantarell.ttf"
             font_size: "13dp"
@@ -133,6 +145,8 @@
             pos_hint: {"x": -0.1, "y": 0.02}
 
         TextInput:
+            id: passwd_text
+            text: root.passwd
             multiline: False
             password: True
             font_name: "data/loginator/res/Cantarell.ttf"
@@ -153,6 +167,8 @@
             pos_hint: {"x": -0.03, "y": -0.1}
 
         TextInput:
+            id: passwd2_text
+            text: root.passwd2
             multiline: False
             password: True
             font_name: "data/loginator/res/Cantarell.ttf"
@@ -162,6 +178,15 @@
             size_hint: (.4,.043)
             pos_hint: {"x": 0.3, "y": 0.32}
             center: self.center
+
+        Label:
+            color: 0.8, 0.1, 0.15, 1
+            font_name: "data/loginator/res/Roboto.ttf"
+            text: root.message
+            font_size: "12dp"
+            halign: 'center'
+            valign: 'middle'
+            pos_hint: {"x": 0.01, "y": -0.28}
 
         Button:
             on_press: root.sign_up_click()

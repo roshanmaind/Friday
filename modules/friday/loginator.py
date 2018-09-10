@@ -17,8 +17,13 @@ class Greet(Screen):
     pass
 
 class Register(Screen):
+    first = StringProperty("")
+    last = StringProperty("")
     user = StringProperty("")
     passwd = StringProperty("")
+    passwd2 = StringProperty("")
+    message = StringProperty("")
+
     def __init__(self, **kwargs):
         super(Register, self).__init__(**kwargs)
         with h5py.File("data/friday/users.hdf5", "r") as users_file:
@@ -30,6 +35,33 @@ class Register(Screen):
 
     def sign_up_click(self):
         global g_user
+
+        for entry in self.database:
+            if entry[2] == self.user:
+                self.message = "Username taken. Use something else."
+                self.first = ""
+                self.last = ""
+                self.user = ""
+                self.passwd = ""
+                self.passwd2 = ""
+                return
+
+        if self.passwd != self.passwd2:
+            self.message = "Passwords don't match."
+            self.first = ""
+            self.last = ""
+            self.user = ""
+            self.passwd = ""
+            self.passwd2 = ""
+            return
+
+        self.database.append([str(self.first), str(self.last), str(self.user), str(self.passwd), "N"])
+        for i in range(len(self.database)):
+            self.database[i] = [attrib.encode("utf8") for attrib in self.database[i]]
+        with h5py.File("data/friday/users.hdf5", "w") as users_file:
+            d = users_file.create_dataset("users", data=self.database)
+        App.get_running_app().stop()
+        return
 
 class Signin(Screen):
     user = StringProperty("")
