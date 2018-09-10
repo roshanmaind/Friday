@@ -10,8 +10,12 @@ if __name__ == "__main__":
         user = pickle.load(file)
     if not user["logged_in"]:
         user = friday.loginator.login(user)
-        user["logged_in"] = True
+        if user["first_name"] == "first" and user["last_name"] == "last":
+            print("Bye!")
+            exit()
         print("Signed in as", user["first_name"], user["last_name"])
     if not user["twitter_linked"]:
         user = twitter.linker.link(user)
         user["twitter_linked"] = True
+    with open("data/friday/last_session.pkl", "wb") as file:
+        pickle.dump(user, file)
