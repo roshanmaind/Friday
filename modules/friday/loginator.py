@@ -96,8 +96,12 @@ class Register(Screen):
             self.database[i] = [attrib.encode("utf8") for attrib in self.database[i]]
         with h5py.File("data/friday/users.hdf5", "w") as users_file:
             d = users_file.create_dataset("users", data=self.database)
-        App.get_running_app().stop()
-        return
+        self.message = "Account created! Restart Friday to login."
+        self.first = ""
+        self.last = ""
+        self.user = ""
+        self.passwd = ""
+        self.passwd2 = ""
 
 class Signin(Screen):
     user = StringProperty("")
