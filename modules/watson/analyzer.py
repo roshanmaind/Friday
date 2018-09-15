@@ -28,12 +28,12 @@ def analyze(user):
 
 if __name__ == "__main__":
 	user = {
-					"tweets": 
-						[
-							"Hey! This is my first tweet!", 
-							"Loving Twitter so far! I just know I'm gonna get addicted to this thing in no time...", 
-							"GOD, I can't wait for the new season of Silicon Valley"
-						]
-				}
+	         "tweets": 
+	          [
+	            "Hey! This is my first tweet!", 
+	            "Loving Twitter so far! I just know I'm gonna get addicted to this thing in no time...", 
+	            "GOD, I can't wait for the new season of Silicon Valley"
+	          ]
+	       }
 
 	user = analyze(user)
