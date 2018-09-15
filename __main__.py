@@ -1,0 +1,3 @@
+import Friday
+
+Friday.main()
