@@ -1,309 +1,309 @@
 #: import FadeTransition kivy.uix.screenmanager.FadeTransition
 
 <Manager>:
-    transition: FadeTransition()
-    Greet:
-    Signin:
-    Register:
+	transition: FadeTransition()
+	Greet:
+	Signin:
+	Register:
 
 <Greet>:
-    name: "Greet"
-    FloatLayout:
-        canvas.before:
-            Rectangle:
-                pos: self.pos
-                size: self.size
-                source: "data/loginator/res/bg.jpg"
-        Label:
-            color: 0.65, 0.65, 0.65, 0.6
-            font_name: "data/loginator/res/Pacifico.ttf"
-            text: "Welcome to Friday"
-            font_size: "25dp"
-            halign: 'center'
-            valign: 'middle'
-            pos_hint: {"x": 0, "y": 0.3}
-        Label:
-            color: 0.8, 0.8, 0.8, 1
-            font_name: "data/loginator/res/Roboto.ttf"
-            text: "or"
-            font_size: "19dp"
-            halign: 'center'
-            valign: 'middle'
-            pos_hint: {"x": 0, "y": -0.08}
-        Button:
-            on_release: root.manager.current = "Register"
-            background_normal: "data/loginator/res/button.png"
-            background_down: "data/loginator/res/buttond.png"
-            pos_hint: {"right": .75, "top": 0.5}
-            size_hint: (.5,.042)
-            Label:
-                font_name: "data/loginator/res/Lobster.otf"
-                font_size: "17dp"
-                center: self.parent.center
-                text: "Register"
+	name: "Greet"
+	FloatLayout:
+		canvas.before:
+			Rectangle:
+				pos: self.pos
+				size: self.size
+				source: "data/loginator/res/bg.jpg"
+		Label:
+			color: 0.65, 0.65, 0.65, 0.6
+			font_name: "data/loginator/res/Pacifico.ttf"
+			text: "Welcome to Friday"
+			font_size: "25dp"
+			halign: 'center'
+			valign: 'middle'
+			pos_hint: {"x": 0, "y": 0.3}
+		Label:
+			color: 0.8, 0.8, 0.8, 1
+			font_name: "data/loginator/res/Roboto.ttf"
+			text: "or"
+			font_size: "19dp"
+			halign: 'center'
+			valign: 'middle'
+			pos_hint: {"x": 0, "y": -0.08}
+		Button:
+			on_release: root.manager.current = "Register"
+			background_normal: "data/loginator/res/button.png"
+			background_down: "data/loginator/res/buttond.png"
+			pos_hint: {"right": .75, "top": 0.5}
+			size_hint: (.5,.042)
+			Label:
+				font_name: "data/loginator/res/Lobster.otf"
+				font_size: "17dp"
+				center: self.parent.center
+				text: "Register"
 
-        Button:
-            on_release: root.manager.current = "Sign in"
-            background_normal: "data/loginator/res/button2.png"
-            background_down: "data/loginator/res/button2d.png"
-            pos_hint: {"right": .657, "top": 0.38}
-            size_hint: (.3,.042)
-            Label:
-                font_name: "data/loginator/res/Lobster.otf"
-                font_size: "17dp"
-                center: self.parent.center
-                text: "Sign in"
+		Button:
+			on_release: root.manager.current = "Sign in"
+			background_normal: "data/loginator/res/button2.png"
+			background_down: "data/loginator/res/button2d.png"
+			pos_hint: {"right": .657, "top": 0.38}
+			size_hint: (.3,.042)
+			Label:
+				font_name: "data/loginator/res/Lobster.otf"
+				font_size: "17dp"
+				center: self.parent.center
+				text: "Sign in"
 
 <Register>:
-    name: "Register"
-    first: first_text.text
-    last: last_text.text
-    user: user_text.text
-    passwd: passwd_text.text
-    passwd2: passwd2_text.text
+	name: "Register"
+	first: first_text.text
+	last: last_text.text
+	user: user_text.text
+	passwd: passwd_text.text
+	passwd2: passwd2_text.text
 
-    FloatLayout:
-        canvas.before:
-            Rectangle:
-                pos: self.pos
-                size: self.size
-                source: "data/loginator/res/bg.jpg"
-        Button:
-            on_release: root.manager.current = "Greet"
-            background_normal: "data/loginator/res/back.png"
-            background_down: "data/loginator/res/back.png"
-            pos_hint: {"right": .15, "top": 1}
-            size_hint: (0.15625, 0.122070313)
+	FloatLayout:
+		canvas.before:
+			Rectangle:
+				pos: self.pos
+				size: self.size
+				source: "data/loginator/res/bg.jpg"
+		Button:
+			on_release: root.manager.current = "Greet"
+			background_normal: "data/loginator/res/back.png"
+			background_down: "data/loginator/res/back.png"
+			pos_hint: {"right": .15, "top": 1}
+			size_hint: (0.15625, 0.122070313)
 
-        Label:
-            color: 0.8, 0.8, 0.8, 1
-            font_name: "data/loginator/res/Roboto.ttf"
-            text: "First Name"
-            font_size: "19dp"
-            halign: 'center'
-            valign: 'middle'
-            pos_hint: {"x": -0.1, "y": 0.38}
-        TextInput:
-            id: first_text
-            text: root.first
-            multiline: False
-            font_name: "data/loginator/res/Cantarell.ttf"
-            font_size: "13dp"
-            halign: 'center'
-            valign: 'middle'
-            size_hint: (.4,.043)
-            pos_hint: {"x": 0.3, "y": 0.8}
-            center: self.center
+		Label:
+			color: 0.8, 0.8, 0.8, 1
+			font_name: "data/loginator/res/Roboto.ttf"
+			text: "First Name"
+			font_size: "19dp"
+			halign: 'center'
+			valign: 'middle'
+			pos_hint: {"x": -0.1, "y": 0.38}
+		TextInput:
+			id: first_text
+			text: root.first
+			multiline: False
+			font_name: "data/loginator/res/Cantarell.ttf"
+			font_size: "13dp"
+			halign: 'center'
+			valign: 'middle'
+			size_hint: (.4,.043)
+			pos_hint: {"x": 0.3, "y": 0.8}
+			center: self.center
 
-        Label:
-            color: 0.8, 0.8, 0.8, 1
-            font_name: "data/loginator/res/Roboto.ttf"
-            text: "Last Name"
-            font_size: "19dp"
-            halign: 'center'
-            valign: 'middle'
-            pos_hint: {"x": -0.1, "y": 0.26}
-        TextInput:
-            id: last_text
-            text: root.last
-            multiline: False
-            font_name: "data/loginator/res/Cantarell.ttf"
-            font_size: "13dp"
-            halign: 'center'
-            valign: 'middle'
-            size_hint: (.4,.043)
-            pos_hint: {"x": 0.3, "y": 0.68}
-            center: self.center
+		Label:
+			color: 0.8, 0.8, 0.8, 1
+			font_name: "data/loginator/res/Roboto.ttf"
+			text: "Last Name"
+			font_size: "19dp"
+			halign: 'center'
+			valign: 'middle'
+			pos_hint: {"x": -0.1, "y": 0.26}
+		TextInput:
+			id: last_text
+			text: root.last
+			multiline: False
+			font_name: "data/loginator/res/Cantarell.ttf"
+			font_size: "13dp"
+			halign: 'center'
+			valign: 'middle'
+			size_hint: (.4,.043)
+			pos_hint: {"x": 0.3, "y": 0.68}
+			center: self.center
 
-        Label:
-            color: 0.8, 0.8, 0.8, 1
-            font_name: "data/loginator/res/Roboto.ttf"
-            text: "Username"
-            font_size: "19dp"
-            halign: 'center'
-            valign: 'middle'
-            pos_hint: {"x": -0.1, "y": 0.14}
-        TextInput:
-            id: user_text
-            text: root.user
-            multiline: False
-            font_name: "data/loginator/res/Cantarell.ttf"
-            font_size: "13dp"
-            halign: 'center'
-            valign: 'middle'
-            size_hint: (.4,.043)
-            pos_hint: {"x": 0.3, "y": 0.56}
-            center: self.center
+		Label:
+			color: 0.8, 0.8, 0.8, 1
+			font_name: "data/loginator/res/Roboto.ttf"
+			text: "Username"
+			font_size: "19dp"
+			halign: 'center'
+			valign: 'middle'
+			pos_hint: {"x": -0.1, "y": 0.14}
+		TextInput:
+			id: user_text
+			text: root.user
+			multiline: False
+			font_name: "data/loginator/res/Cantarell.ttf"
+			font_size: "13dp"
+			halign: 'center'
+			valign: 'middle'
+			size_hint: (.4,.043)
+			pos_hint: {"x": 0.3, "y": 0.56}
+			center: self.center
 
-        Label:
-            color: 0.8, 0.8, 0.8, 1
-            font_name: "data/loginator/res/Roboto.ttf"
-            text: "Password"
-            font_size: "19dp"
-            halign: 'center'
-            valign: 'middle'
-            pos_hint: {"x": -0.1, "y": 0.02}
+		Label:
+			color: 0.8, 0.8, 0.8, 1
+			font_name: "data/loginator/res/Roboto.ttf"
+			text: "Password"
+			font_size: "19dp"
+			halign: 'center'
+			valign: 'middle'
+			pos_hint: {"x": -0.1, "y": 0.02}
 
-        TextInput:
-            id: passwd_text
-            text: root.passwd
-            multiline: False
-            password: True
-            font_name: "data/loginator/res/Cantarell.ttf"
-            font_size: "13dp"
-            halign: 'center'
-            valign: 'middle'
-            size_hint: (.4,.043)
-            pos_hint: {"x": 0.3, "y": 0.44}
-            center: self.center
+		TextInput:
+			id: passwd_text
+			text: root.passwd
+			multiline: False
+			password: True
+			font_name: "data/loginator/res/Cantarell.ttf"
+			font_size: "13dp"
+			halign: 'center'
+			valign: 'middle'
+			size_hint: (.4,.043)
+			pos_hint: {"x": 0.3, "y": 0.44}
+			center: self.center
 
-        Label:
-            color: 0.8, 0.8, 0.8, 1
-            font_name: "data/loginator/res/Roboto.ttf"
-            text: "Confirm Password"
-            font_size: "19dp"
-            halign: 'center'
-            valign: 'middle'
-            pos_hint: {"x": -0.03, "y": -0.1}
+		Label:
+			color: 0.8, 0.8, 0.8, 1
+			font_name: "data/loginator/res/Roboto.ttf"
+			text: "Confirm Password"
+			font_size: "19dp"
+			halign: 'center'
+			valign: 'middle'
+			pos_hint: {"x": -0.03, "y": -0.1}
 
-        TextInput:
-            id: passwd2_text
-            text: root.passwd2
-            multiline: False
-            password: True
-            font_name: "data/loginator/res/Cantarell.ttf"
-            font_size: "13dp"
-            halign: 'center'
-            valign: 'middle'
-            size_hint: (.4,.043)
-            pos_hint: {"x": 0.3, "y": 0.32}
-            center: self.center
+		TextInput:
+			id: passwd2_text
+			text: root.passwd2
+			multiline: False
+			password: True
+			font_name: "data/loginator/res/Cantarell.ttf"
+			font_size: "13dp"
+			halign: 'center'
+			valign: 'middle'
+			size_hint: (.4,.043)
+			pos_hint: {"x": 0.3, "y": 0.32}
+			center: self.center
 
-        Label:
-            color: 0.8, 0.1, 0.15, 1
-            font_name: "data/loginator/res/Roboto.ttf"
-            text: root.message
-            font_size: "12dp"
-            halign: 'center'
-            valign: 'middle'
-            pos_hint: {"x": 0.01, "y": -0.28}
+		Label:
+			color: 0.8, 0.1, 0.15, 1
+			font_name: "data/loginator/res/Roboto.ttf"
+			text: root.message
+			font_size: "12dp"
+			halign: 'center'
+			valign: 'middle'
+			pos_hint: {"x": 0.01, "y": -0.28}
 
-        Button:
-            on_press: root.sign_up_click()
-            background_normal: "data/loginator/res/button2.png"
-            background_down: "data/loginator/res/button2d.png"
-            pos_hint: {"right": .657, "top": 0.15}
-            size_hint: (.3,.042)
-            Label:
-                font_name: "data/loginator/res/Lobster.otf"
-                font_size: "17dp"
-                center: self.parent.center
-                text: "Sign up"
+		Button:
+			on_press: root.sign_up_click()
+			background_normal: "data/loginator/res/button2.png"
+			background_down: "data/loginator/res/button2d.png"
+			pos_hint: {"right": .657, "top": 0.15}
+			size_hint: (.3,.042)
+			Label:
+				font_name: "data/loginator/res/Lobster.otf"
+				font_size: "17dp"
+				center: self.parent.center
+				text: "Sign up"
 
 
 <Signin>:
-    name: "Sign in"
-    user: sign_in_user.text
-    passwd: sign_in_pass.text
-    remember: chk.active
-    FloatLayout:
-        canvas.before:
-            Rectangle:
-                pos: self.pos
-                size: self.size
-                source: "data/loginator/res/bg.jpg"
+	name: "Sign in"
+	user: sign_in_user.text
+	passwd: sign_in_pass.text
+	remember: chk.active
+	FloatLayout:
+		canvas.before:
+			Rectangle:
+				pos: self.pos
+				size: self.size
+				source: "data/loginator/res/bg.jpg"
 
-        Label:
-            color: 0.65, 0.65, 0.65, 0.6
-            font_name: "data/loginator/res/Pacifico.ttf"
-            text: "Friday"
-            font_size: "25dp"
-            halign: 'center'
-            valign: 'middle'
-            pos_hint: {"x": 0, "y": 0.3}
+		Label:
+			color: 0.65, 0.65, 0.65, 0.6
+			font_name: "data/loginator/res/Pacifico.ttf"
+			text: "Friday"
+			font_size: "25dp"
+			halign: 'center'
+			valign: 'middle'
+			pos_hint: {"x": 0, "y": 0.3}
 
-        Label:
-            color: 0.8, 0.8, 0.8, 1
-            font_name: "data/loginator/res/Roboto.ttf"
-            text: "Username"
-            font_size: "19dp"
-            halign: 'center'
-            valign: 'middle'
-            pos_hint: {"x": -0.1, "y": 0.05}
+		Label:
+			color: 0.8, 0.8, 0.8, 1
+			font_name: "data/loginator/res/Roboto.ttf"
+			text: "Username"
+			font_size: "19dp"
+			halign: 'center'
+			valign: 'middle'
+			pos_hint: {"x": -0.1, "y": 0.05}
 
-        TextInput:
-            id: sign_in_user
-            text: root.user
-            multiline: False
-            font_name: "data/loginator/res/Cantarell.ttf"
-            font_size: "13dp"
-            halign: 'center'
-            valign: 'middle'
-            size_hint: (.4,.043)
-            pos_hint: {"x": 0.3, "y": 0.475}
-            center: self.center
+		TextInput:
+			id: sign_in_user
+			text: root.user
+			multiline: False
+			font_name: "data/loginator/res/Cantarell.ttf"
+			font_size: "13dp"
+			halign: 'center'
+			valign: 'middle'
+			size_hint: (.4,.043)
+			pos_hint: {"x": 0.3, "y": 0.475}
+			center: self.center
 
-        Label:
-            color: 0.8, 0.8, 0.8, 1
-            font_name: "data/loginator/res/Roboto.ttf"
-            text: "Password"
-            font_size: "19dp"
-            halign: 'center'
-            valign: 'middle'
-            pos_hint: {"x": -0.1, "y": -0.1}
+		Label:
+			color: 0.8, 0.8, 0.8, 1
+			font_name: "data/loginator/res/Roboto.ttf"
+			text: "Password"
+			font_size: "19dp"
+			halign: 'center'
+			valign: 'middle'
+			pos_hint: {"x": -0.1, "y": -0.1}
 
-        TextInput:
-            id: sign_in_pass
-            text: root.passwd
-            multiline: False
-            password: True
-            font_name: "data/loginator/res/Cantarell.ttf"
-            font_size: "13dp"
-            halign: 'center'
-            valign: 'middle'
-            size_hint: (.4,.043)
-            pos_hint: {"x": 0.3, "y": 0.324}
-            center: self.center
+		TextInput:
+			id: sign_in_pass
+			text: root.passwd
+			multiline: False
+			password: True
+			font_name: "data/loginator/res/Cantarell.ttf"
+			font_size: "13dp"
+			halign: 'center'
+			valign: 'middle'
+			size_hint: (.4,.043)
+			pos_hint: {"x": 0.3, "y": 0.324}
+			center: self.center
 
-        CheckBox:
-            id: chk
-            active: True
-            pos_hint: {"x": 0.6, "y": .245}
-            size_hint: (0.04,0.04)
+		CheckBox:
+			id: chk
+			active: True
+			pos_hint: {"x": 0.6, "y": .245}
+			size_hint: (0.04,0.04)
 
-        Label:
-            color: 0.8, 0.8, 0.8, 1
-            font_name: "data/loginator/res/Roboto.ttf"
-            text: "Remember me"
-            font_size: "16dp"
-            halign: 'center'
-            valign: 'middle'
-            pos_hint: {"x": -0.038, "y": -0.233}
+		Label:
+			color: 0.8, 0.8, 0.8, 1
+			font_name: "data/loginator/res/Roboto.ttf"
+			text: "Remember me"
+			font_size: "16dp"
+			halign: 'center'
+			valign: 'middle'
+			pos_hint: {"x": -0.038, "y": -0.233}
 
-        Label:
-            color: 0.8, 0.1, 0.15, 1
-            font_name: "data/loginator/res/Roboto.ttf"
-            text: root.message
-            font_size: "12dp"
-            halign: 'center'
-            valign: 'middle'
-            pos_hint: {"x": 0.01, "y": -0.28}
+		Label:
+			color: 0.8, 0.1, 0.15, 1
+			font_name: "data/loginator/res/Roboto.ttf"
+			text: root.message
+			font_size: "12dp"
+			halign: 'center'
+			valign: 'middle'
+			pos_hint: {"x": 0.01, "y": -0.28}
 
-        Button:
-            on_release: root.sign_in_click()
-            background_normal: "data/loginator/res/button2.png"
-            background_down: "data/loginator/res/button2d.png"
-            pos_hint: {"right": .657, "top": 0.15}
-            size_hint: (.3,.042)
-            Label:
-                font_name: "data/loginator/res/Lobster.otf"
-                font_size: "17dp"
-                center: self.parent.center
-                text: "Sign in"
+		Button:
+			on_release: root.sign_in_click()
+			background_normal: "data/loginator/res/button2.png"
+			background_down: "data/loginator/res/button2d.png"
+			pos_hint: {"right": .657, "top": 0.15}
+			size_hint: (.3,.042)
+			Label:
+				font_name: "data/loginator/res/Lobster.otf"
+				font_size: "17dp"
+				center: self.parent.center
+				text: "Sign in"
 
-        Button:
-            on_release: root.manager.current = "Greet"
-            background_normal: "data/loginator/res/back.png"
-            background_down: "data/loginator/res/back.png"
-            pos_hint: {"right": .15, "top": 1}
-            size_hint: (0.15625, 0.122070313)
+		Button:
+			on_release: root.manager.current = "Greet"
+			background_normal: "data/loginator/res/back.png"
+			background_down: "data/loginator/res/back.png"
+			pos_hint: {"right": .15, "top": 1}
+			size_hint: (0.15625, 0.122070313)
