@@ -1,1 +1,1 @@
-from modules.watson import analyze
+from modules.watson import analyzer

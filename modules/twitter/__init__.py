@@ -1,1 +1,1 @@
-from modules.twitter import linker
+from modules.twitter import tweets
