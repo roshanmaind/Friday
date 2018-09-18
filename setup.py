@@ -9,9 +9,11 @@ You may be prompted to enter sudo (root user) password
 This setup will install on your machine the following softwares and packages:-
 1. OpenGL
 2. python3-pip
-3. cython
-4. kivy
-5. h5py
+3. IBM Watson Cloud CLI
+4. cython
+5. kivy
+6. h5py
+7. python-twitter
 
 The softwares or packages that already exist will be skipped.
 
@@ -27,6 +29,25 @@ Do you wish to continue? (Y/N):''', end=" ")
 
 	print("\nInstalling required python3 modules...")
 	system("pip3 install -r requirements.txt")
+
+	print("Modules installation finished.")
+	print("Installing IBM Watson Cloud CLI...")
+	system("mkdir temp")
+	system("cd temp")
+	system("wget https://clis.ng.bluemix.net/download/bluemix-cli/latest/linux64")
+	system("tar xvzf IBM_Cloud_CLI_0.9.0_amd64.tar.gz")
+	system("./install")
+	system("./install_bluemix_cli")
+	print("Watson Cloud services installed")
+	print("Loggin into IBM Watson Cloud...")
+	print("ATTENTION")
+	print("You require an IBM Watson Cloud account in order to let the app use the")
+	print("cloud services. Go to https://www.ibm.com/watson/developer/ and create a")
+	print("developer's account and remember your email address and password and login")
+	print("with your credentials. When asked to select an api endpoint, select")
+	print("1. eu-de - https://api.eu-de.bluemix.net")
+	print("")
+
 
 else:
 	print('''
