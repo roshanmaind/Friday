@@ -8,7 +8,7 @@ import re
 from sys import argv
 
 if len(argv) < 3:
-	print("python collect.py <path/to/songs/hdf5> <col_file_name>.col [--ignore <lines to be ignored in songs list>]")
+	print("python collect.py <path/to/songs/database>.hdf5 <col_file_name>.col [--ignore <lines to be ignored in songs list>]")
 	exit()
 
 ignore = ["Spotify", ""]
