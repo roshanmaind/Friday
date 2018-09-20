@@ -8,7 +8,7 @@ root_path = root_path[:len(root_path) - 9]
 
 
 def load_session():
-	with open(str(root_path + "data/friday/last_session.pkl"), "rb") as file:
+	with open(str(root_path + "data/friday/session.pkl"), "rb") as file:
 		user = pickle.load(file)
 	return user
 
@@ -20,7 +20,7 @@ def end_session(user):
 		user["last_name"] = ""
 		user["username"] = ""
 
-	with open(str(root_path + "data/friday/last_session.pkl"), "wb") as file:
+	with open(str(root_path + "data/friday/session.pkl"), "wb") as file:
 		pickle.dump(user, file)
 
 
