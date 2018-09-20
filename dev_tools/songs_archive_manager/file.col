@@ -1,7 +1,10 @@
 # This is just a sample template of how the col file should be. 
 
---rock
+--ignore
 
+--end
+
+--rock
 Broken lovelytheband
 Broken
 lovelytheband
@@ -146,8 +149,8 @@ George Ezra
 
 7
 
-Awards
-Biggest gain in digital sales
+
+
 
 16
 Death Cab For Cutie Gold Rush 
@@ -477,7 +480,6 @@ Panic! At The Disco Roaring 20s
 Roaring 20s
 Panic! At The Disco
 --end
-
 --happy
 --end
 --sad

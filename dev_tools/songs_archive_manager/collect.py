@@ -1,4 +1,4 @@
-import h5py
+import pickle
 from selenium import webdriver
 from selenium.webdriver.firefox.options import Options
 from selenium.webdriver.support.ui import WebDriverWait
@@ -8,13 +8,10 @@ import re
 from sys import argv
 
 if len(argv) < 3:
-	print("python collect.py <path/to/songs/database>.hdf5 <col_file_name>.col [--ignore <lines to be ignored in songs list>]")
+	print("python collect.py <path/to/songs/database>.hdf5 <col_file_name>.col")
 	exit()
 
-ignore = ["Spotify", ""]
-if len(argv) > 3 and argv[3] == "--ignore":
-	for i in range(4, len(argv)):
-		ignore.append(argv[i])
+ignore = [""]
 
 counter = 0
 
@@ -36,6 +33,18 @@ while True:
 	if ip == "--end":
 		break
 	if ip[0] == "-" and ip[1] == "-":
+		if ip == "--ignore":
+			idx += 1
+			while lines[idx] != "--end":
+				ip = lines[idx]
+				ignore.append(ip)
+				idx += 1
+			print("Ignoring the following:-")
+			print(ignore)
+
+			idx += 1
+			continue
+
 		ip = ip[2:]
 		print("Genre:", ip)
 		songs[ip] = []
@@ -53,8 +62,11 @@ while True:
 				idx += 1
 				continue
 
-			print("Song:", song_name)
+			actual_song_name = lines[idx+1] + " ~ " + lines[idx + 2]
+			print("Song:", actual_song_name)
+
 			idx += 3
+
 			song_name = list(song_name)
 			for i in range(len(song_name)):
 				if song_name[i] == "\t" or song_name[i] == " ":
@@ -66,8 +78,8 @@ while True:
 			driver.get("http://youtube.com/results?search_query=" + song_name)
 			WebDriverWait(driver, 50).until(EC.visibility_of_element_located((By.ID, "title-wrapper")))
 			src = driver.page_source
-			link = "https://youtube.com/" + re.findall(r"watch.v=[\w]+", src)[0]
-			songs[ip].append([song_name, link])
+			link = "http://www.youtube.com/" + re.findall(r"watch.v=[\w|-]+", src)[0]
+			songs[ip].append([actual_song_name.encode("utf8"), link.encode("utf8")])
 
 			print("Link:", link)
 
@@ -77,5 +89,5 @@ while True:
 
 print(songs)
 
-with h5py.File(argv[1], "w") as file:
-	file.create_dataset("songs", data=songs)
+with open(argv[1], "wb") as file:
+	pickle.dump(songs, file)
