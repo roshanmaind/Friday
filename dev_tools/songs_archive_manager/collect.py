@@ -12,7 +12,7 @@ if len(argv) < 3:
 	exit()
 
 ignore = ["Spotify", ""]
-if len(argv) > 3 and argv[3] == "--ignore"
+if len(argv) > 3 and argv[3] == "--ignore":
 	for i in range(4, len(argv)):
 		ignore.append(argv[i])
 
@@ -42,17 +42,19 @@ while True:
 		while True:
 			if not counter % 30:
 				driver = webdriver.Firefox(firefox_options=options)
-
+			if lines[idx].isdigit():
+				idx += 1
+				continue
 			song_name = lines[idx]
-			idx += 1
-
+			
 			if song_name == "--end":
 				break
 			if song_name in ignore:
+				idx += 1
 				continue
 
 			print("Song:", song_name)
-
+			idx += 3
 			song_name = list(song_name)
 			for i in range(len(song_name)):
 				if song_name[i] == "\t" or song_name[i] == " ":
@@ -73,7 +75,7 @@ while True:
 			if not counter % 30:
 				driver.close()
 
-lines.close()
+print(songs)
 
 with h5py.File(argv[1], "w") as file:
 	file.create_dataset("songs", data=songs)
