@@ -45,9 +45,6 @@ print(bcolors.OKGREEN + "[INFO\t]" + bcolors.ENDC + " Closing driver...")
 driver.close()
 print(bcolors.OKGREEN + "[OK\t]" + bcolors.ENDC + " Driver closed.")
 
-with open("text.txt", "w") as file:
-	file.write(src)
-
 lines = src.split("\n")
 
 sng_text = ["\n"]
