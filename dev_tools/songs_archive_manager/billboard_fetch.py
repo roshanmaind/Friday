@@ -7,7 +7,7 @@ import re
 from sys import argv
 
 if len(argv) < 4:
-	print("python collect.py <chart name> <sng_file_name>.sng <genre>")
+	print("python billboard_fetch.py <chart name> <sng_file_name>.sng <genre>")
 	exit()
 
 # fancy log printing stuff
@@ -50,14 +50,7 @@ with open("text.txt", "w") as file:
 
 lines = src.split("\n")
 
-with open(argv[2], "r") as sng:
-	sng_text = sng.read().split("\n")
-
-idx = 0
-for i in range(len(sng_text)):
-	if sng_text[i] == "--end":
-		idx = i
-sng_text.pop(idx)
+sng_text = ["\n"]
 
 sng_text.append("--{}".format(argv[3]))
 
@@ -70,10 +63,17 @@ for i in range(len(lines)):
 		song = song.replace("&amp;", "&")
 		sng_text.append(song)
 	elif '<div class="chart-number-one__title">' in lines[i]:
-		sng_text.append(lines[i][37:len(lines[i]) - 6].replace("&amp;", "&") + " ~ " + lines[i + 2].replace("&amp;", "&"))
+		song = lines[i][37:len(lines[i]) - 6] + " ~ "
+		j = i + 1
+		while any([x == "<" for x in lines[j][:2]]):
+			j += 1
+		song += lines[j]
+		if song[0] == " ":
+			song = song[1:]
+		song = song.replace("&amp;", "&")
+		sng_text.append(song)
 
 sng_text.append("--end")
-sng_text.append("--end")
 
-with open(argv[2], "w") as sng:
+with open(argv[2], "a+") as sng:
 	sng.write("\n".join(sng_text))
