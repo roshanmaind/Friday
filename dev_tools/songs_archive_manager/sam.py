@@ -8,7 +8,7 @@ import re
 from sys import argv
 
 if len(argv) < 3:
-	print("python get_and_store_youtube_links.py <path/to/songs/database>.pkl <sng_file_name>.sng")
+	print("python sam.py <path/to/songs/database>.pkl <sng_file_name>.sng")
 	exit()
 
 # fancy log printing stuff
@@ -58,7 +58,6 @@ for line in sng_text:
 				driver.get(search_page)
 			except:
 				driver.execute_script("window.stop();")
-			WebDriverWait(driver, 50).until(EC.visibility_of_element_located((By.ID, "title-wrapper")))
 			link = "http://www.youtube.com/" + re.findall(r"watch.v=[\w|-]+", driver.page_source)[0]
 			driver.close()
 			print("{}[INFO\t]{} Link captured: {}".format(bcolors.OKGREEN, bcolors.ENDC, link))
