@@ -38,10 +38,6 @@ except:
 	driver.execute_script("window.stop();")
 print(bcolors.OKGREEN + "[OK\t]" + bcolors.ENDC + " Website loaded.")
 
-print(bcolors.OKGREEN + "[INFO\t]" + bcolors.ENDC + " Waiting for element of interest to be loaded...")
-WebDriverWait(driver, 50).until(EC.visibility_of_element_located((By.CLASS_NAME, "chart-list-item__title-text")))
-print(bcolors.OKGREEN + "[OK\t]" + bcolors.ENDC + " Element found.")
-
 src = driver.page_source
 print(bcolors.OKGREEN + "[OK\t]" + bcolors.ENDC + " Page source code copied.")
 
