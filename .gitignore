@@ -5,3 +5,4 @@ temp*
 collector.py
 *.log
 */*.log
+*/*/*.log
