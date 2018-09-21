@@ -47,7 +47,11 @@ for line in sng_text:
 		print("{}[INFO\t]{} Starting genre: {}".format(bcolors.OKGREEN, bcolors.ENDC, genre))
 	else:
 		if scope == SONGS:
-			print("{}[{}\t]{} Song: {}".format(bcolors.OKGREEN, genre, bcolors.ENDC, line))
+			if len(genre) < 7:
+				song_class = genre + "\t"
+			else:
+				song_class = genre
+			print("{}[{}]{} Song: {}".format(bcolors.OKGREEN, song_class, bcolors.ENDC, line))
 			query = "".join([character if character.isalnum() or character == " " else "" for character in line]).replace(" ", "+")
 			search_page = "https://www.youtube.com/results?search_query=" + query
 			print("{}[INFO\t]{} Loading browser driver".format(bcolors.OKGREEN, bcolors.ENDC))
