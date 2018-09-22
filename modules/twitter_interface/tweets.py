@@ -59,7 +59,11 @@ class TweetAge():
 		TIMEZONE = 4
 		YEAR = 5
 
-		tweet_hours = TweetAge.hours(year=int(created_at[YEAR]), month=(TweetAge.months.index(created_at[MONTH]) + 1), day=int(created_at[DATE]), hour=int(created_at[TIME][:2]))
+		tweet_hours = TweetAge.hours(year=int(created_at[YEAR]), 
+		                             month=(TweetAge.months.index(created_at[MONTH]) + 1), 
+		                             day=int(created_at[DATE]), 
+		                             hour=int(created_at[TIME][:2]))
+
 		current_hours = TweetAge.hours(year=now.year, month=now.month, day=now.day, hour=now.hour)
 
 		return current_hours - (tweet_hours + 5.5) < 24
