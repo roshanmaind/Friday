@@ -16,9 +16,9 @@ CONSUMER_SECRET = '9TKbHkmAJZ7aUEAAAxKVtOngqkrIXiNS0bMyQsVSiNoqBaqo9r'
 
 class TweetAge():
 	months = [
-	          "Jan", "Feb", "Mar", "Apr", "May",
-	          "Jun", "Jul", "Aug", "Sep", "Oct",
-	          "Nov", "Dec"
+	          "Jan", "Feb", "Mar", "Apr", 
+	          "May", "Jun", "Jul", "Aug", 
+	          "Sep", "Oct", "Nov", "Dec"
 	          ]
 
 	days_in_months = [ 
