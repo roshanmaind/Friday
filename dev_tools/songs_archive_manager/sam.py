@@ -48,21 +48,28 @@ for line in sng_text:
 				song_class = genre + "\t"
 			else:
 				song_class = genre
+
 			print("{}[{}]{} Song: {}".format(bcolors.OKGREEN, song_class, bcolors.ENDC, line))
+
 			query = "".join([character if character.isalnum() or character == " " else "" for character in line]).replace(" ", "+")
 			search_page = "https://www.youtube.com/results?search_query=" + query
+
 			print("{}[INFO\t]{} Loading browser driver".format(bcolors.OKGREEN, bcolors.ENDC))
 			driver = webdriver.Firefox(firefox_options=options)
 			driver.set_page_load_timeout(10)
+
 			print("{}[INFO\t]{} Fetching link from: {}".format(bcolors.OKGREEN, bcolors.ENDC, search_page))
 			try:
 				driver.get(search_page)
 			except:
 				driver.execute_script("window.stop();")
+
 			link = "http://www.youtube.com/" + re.findall(r"watch.v=[\w|-]+", driver.page_source)[0]
 			driver.close()
+
 			print("{}[INFO\t]{} Link captured: {}".format(bcolors.OKGREEN, bcolors.ENDC, link))
 			print()
+			
 			songs[genre].append([line, link])
 
 with open(argv[1], "wb") as file:

@@ -21,7 +21,9 @@ class TweetAge():
 	          "Nov", "Dec"
 	          ]
 
-	days_in_months = [ 31, 28, 31, 30, 31, 30, 31, 31,
+	days_in_months = [ 
+	                  31, 28, 31, 30, 
+	                  31, 30, 31, 31,
 	                  30, 31, 30, 31
 	                  ]
 
