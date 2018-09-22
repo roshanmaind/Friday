@@ -33,10 +33,11 @@ def get(consumer_key, consumer_secret):
 			pincode = re.findall(r"[\d]+", line)[0]
 			break
 
-	oauth_client = OAuth1Session(consumer_key, client_secret=consumer_secret,
-															 resource_owner_key=resp.get('oauth_token'),
-															 resource_owner_secret=resp.get('oauth_token_secret'),
-															 verifier=pincode)
+	oauth_client = OAuth1Session(consumer_key, 
+	                             client_secret=consumer_secret,
+	                             resource_owner_key=resp.get('oauth_token'),
+	                             resource_owner_secret=resp.get('oauth_token_secret'),
+	                             verifier=pincode)
 	try:
 			resp = oauth_client.fetch_access_token(ACCESS_TOKEN_URL)
 	except ValueError as e:
