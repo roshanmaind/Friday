@@ -101,7 +101,7 @@ class Register(Screen):
 			self.passwd2 = ""
 			return
 
-		self.database.append([str(self.first), str(self.last), str(self.user), str(self.passwd), "N"])
+		self.database.append([str(self.first), str(self.last), str(self.user), str(self.passwd), "12345678901234567890123456789012345678901234567890", "12345678901234567890123456789012345678901234567890"])
 		for i in range(len(self.database)):
 			self.database[i] = [attrib.encode("utf8") for attrib in self.database[i]]
 		with h5py.File(str(root_path + "data/friday/users.hdf5"), "w") as users_file:
@@ -138,7 +138,8 @@ class Signin(Screen):
 				g_user["last_name"] = entry[1]
 				g_user["username"] = self.user
 				g_user["logged_in"] = True if self.remember else False
-				g_user["twitter_linked"] = True if entry[4] == "Y" else False
+				g_user["access_key"] = entry[4]
+				g_user["access_secret"] = entry[5]
 				App.get_running_app().stop()
 				return
 		self.message = "Incorrect username or password. Try again."

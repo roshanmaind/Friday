@@ -1,9 +1,16 @@
 from watson_developer_cloud import ToneAnalyzerV3
+from watson_developer_cloud.watson_service import WatsonApiException
 
+username = ""
+password = ""
+with open("watson_creds.txt", "r") as file:
+	lines = file.read().split("\n")
+	username = lines[0].split(" ")[1]
+	password = lines[1].split(" ")[1]
 
 watson = ToneAnalyzerV3(
-            username="",
-            password="",
+            username=username,
+            password=password,
             version="2017-09-26"
          )
 
@@ -22,7 +29,10 @@ def analyze(user):
 	tone_input = ""
 	for tweet in tweets:
 		tone_input = tone_input + " <p> " + tweet + " </p> "
-	user["tone"] = watson.tone(tone_input, content_type='text/html')
+	try:
+		user["tone"] = watson.tone(tone_input, content_type='text/html')
+	except WatsonApiException as we:
+		print(we)
 	return user
 
 

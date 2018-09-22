@@ -6,3 +6,4 @@ collector.py
 *.log
 */*.log
 */*/*.log
+watson_creds.txt

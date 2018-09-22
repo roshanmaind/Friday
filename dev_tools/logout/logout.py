@@ -6,5 +6,5 @@ if len(argv) == 1:
 	exit()
 
 with open(argv[1], "wb") as file:
-	user = {"logged_in": False, "first_name": "", "last_name": "", "username": "", "twitter_linked": False}
+	user = {"logged_in": False, "first_name": "", "last_name": "", "username": "", "access_key": "", "access_secret": ""}
 	pickle.dump(user, file)

@@ -1,1 +1,1 @@
-from modules.friday import loginator, main
+from modules.friday import main
