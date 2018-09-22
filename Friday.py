@@ -52,10 +52,9 @@ def main():
 	check_login(user)
 	
 	new_keys, user = tweets.get_tweets(user)
-	
+
 	if new_keys is None:
 		exit()
-
 	if new_keys == True:
 		print("Saving user access tokens")
 		save_user_keys(user)

@@ -66,7 +66,7 @@ class TweetAge():
 
 
 def get_tweets(user):
-	linked = user["access_key"] != "12345678901234567890123456789012345678901234567890"
+	linked = user["access_key"] != "1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890"
 
 	if linked:
 		atk, ats = user["access_key"], user["access_secret"]

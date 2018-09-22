@@ -101,7 +101,7 @@ class Register(Screen):
 			self.passwd2 = ""
 			return
 
-		self.database.append([str(self.first), str(self.last), str(self.user), str(self.passwd), "12345678901234567890123456789012345678901234567890", "12345678901234567890123456789012345678901234567890"])
+		self.database.append([str(self.first), str(self.last), str(self.user), str(self.passwd), "1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890", ""])
 		for i in range(len(self.database)):
 			self.database[i] = [attrib.encode("utf8") for attrib in self.database[i]]
 		with h5py.File(str(root_path + "data/friday/users.hdf5"), "w") as users_file:
