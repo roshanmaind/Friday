@@ -10,8 +10,8 @@ Using Twitter API to log in to Twitter account and get tweets
 '''
 
 
-CONSUMER_KEY = 'NUQK4wtw1t8KmyaA0WwOXp4PS'
-CONSUMER_SECRET = '9TKbHkmAJZ7aUEAAAxKVtOngqkrIXiNS0bMyQsVSiNoqBaqo9r'
+CONSUMER_KEY = ''
+CONSUMER_SECRET = ''
 
 
 class TweetAge():
