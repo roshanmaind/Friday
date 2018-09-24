@@ -84,6 +84,17 @@ def save_user_keys(user):
 		d = users_file.create_dataset("users", data=database)
 
 def main():
+	try:
+		open("twitter.keys", "rb")
+		open("watson.keys", "rb")
+	except FileNotFoundError:
+		print("""
+Key files not found in the root directory. The app will not work without key files.
+Obtain them from the owner of the official Friday repository, @roshanmaind.
+
+Aborting...
+			""")
+		exit()
 	while True:
 		user = load_session()
 
