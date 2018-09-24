@@ -6,12 +6,15 @@ import datetime
 
 '''Fetches the tweets made by the user and adds them to the current user session
 
-Using Twitter API to log in to Twitter account and get tweets
+Using Twitter API with user access keys got from OAuth to get last 24 hours' tweets.
 '''
-
 
 CONSUMER_KEY = ''
 CONSUMER_SECRET = ''
+
+with open("twitter.keys", "rb") as file:
+	creds = pickle.load(file)
+	CONSUMER_KEY, CONSUMER_SECRET = creds[0], creds[1]
 
 
 class TweetAge():
@@ -30,18 +33,12 @@ class TweetAge():
 
 	@staticmethod
 	def hours(year, month, day, hour):
-		# init
 		h = 0
-		# years converted to days and then hours and then added
 		h += ((year - 1) * 365 + ((year - 1) / 4)) * 24
-		# months converted to days and then hours and then added
 		h += sum(TweetAge.days_in_months[:month - 1]) * 24
-		# adding one more day worth of hours if current year is a leap year
 		if (not year % 4) and month > 2:
 			h += 24
-		# days converted to hours and then added
 		h += (day - 1) * 24
-		# hours added
 		h += hour
 
 		return h
@@ -70,15 +67,12 @@ class TweetAge():
 
 
 def get_tweets(user):
-	linked = user["access_key"] != "1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890"
+	linked = user["access_key"] != "0" * 100
 
 	if linked:
 		atk, ats = user["access_key"], user["access_secret"]
 	else:
-		
 		atk, ats = get_token.get(CONSUMER_KEY, CONSUMER_SECRET)
-		if atk == None:
-			return None, user
 
 	api = twitter.Api(consumer_key=CONSUMER_KEY,
 	                  consumer_secret=CONSUMER_SECRET,
@@ -90,8 +84,6 @@ def get_tweets(user):
 	tweets = "\n".join([stat.full_text for stat in timeline if TweetAge.was_made_in_last_24_hours(stat)])
 
 	tweets = re.sub("https.//t.co/[\w]+", "", tweets)
-	tweets = re.sub("@[\w]+", "", tweets)
-	tweets = re.sub("#[\w]+", "", tweets)
 	tweets = tweets.split("\n")
 	tweets = [tweet.strip() for tweet in tweets]
 	while "" in tweets:

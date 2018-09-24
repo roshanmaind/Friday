@@ -1,43 +1,29 @@
 from kivy.app import App
 from kivy.config import Config
+from kivy.uix.floatlayout import FloatLayout
 
 Config.set('graphics', 'width', '500')
 Config.set('graphics', 'height', '640')
 Config.set('graphics', 'resizable', False)
 
-from kivy.uix.screenmanager import Screen
-from kivy.core.window import Window
-
-
-allowed = False
-
-class Main(Screen):
-	pass
-
 class Permission(App):
-	def allow(self):
-		global allowed
-		allowed = True
+	def allow(self, *largs):
+		from kivy.core.window import Window
+		super(Permission, self).stop(*largs)
 		Window.close()
-		return
 		
-	def deny(self):
-		global allowed
-		allowed = False
-		Window.close()
-		return
+	def deny(self, *largs):
+		super(Permission, self).stop(*largs)
+		exit()
 
 	def build(self):
-		return Main()
+		return FloatLayout()
 
 def consent():
-	global allowed
-	try:
-		Permission().run()
-	except:
-		pass
-	return allowed
+	Permission().run()
+	return True
 
 
 if __name__ == "__main__":
-	print(consent())
+	if consent():
+		print("allowed")

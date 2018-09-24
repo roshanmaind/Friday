@@ -1,47 +1,45 @@
-<Main>:
-	name: "Main"
-	FloatLayout:
-		canvas.before:
-			Rectangle:
-				pos: self.pos
-				size: self.size
-				source: "data/tt_link/res/bg.jpg"
+<FloatLayout>:
+	canvas.before:
+		Rectangle:
+			pos: self.pos
+			size: self.size
+			source: "data/tt_link/res/bg.jpg"
+	Label:
+		color: 0.8, 0.8, 0.8, 0.8
+		font_name: "data/tt_link/res/Roboto.ttf"
+		text: "You haven't linked your Twitter with your Friday account yet!"
+		font_size: "17dp"
+		halign: 'center'
+		valign: 'middle'
+		pos_hint: {"x": 0, "y": 0.24}
+	Label:
+		color: 0.8, 0.8, 0.8, 0.8
+		font_name: "data/tt_link/res/Roboto.ttf"
+		text: "Friday requires users to link their Twitter accounts"
+		font_size: "15dp"
+		halign: 'center'
+		valign: 'middle'
+		pos_hint: {"x": 0, "y": 0.175}
+	Button:
+		on_release: app.allow()
+		background_normal: "data/tt_link/res/button.png"
+		background_down: "data/tt_link/res/buttond.png"
+		pos_hint: {"right": .65, "top": 0.38}
+		size_hint: (.3,.042)
 		Label:
-			color: 0.8, 0.8, 0.8, 0.8
 			font_name: "data/tt_link/res/Roboto.ttf"
-			text: "You haven't linked your Twitter with your Friday account yet!"
-			font_size: "17dp"
-			halign: 'center'
-			valign: 'middle'
-			pos_hint: {"x": 0, "y": 0.24}
-		Label:
-			color: 0.8, 0.8, 0.8, 0.8
-			font_name: "data/tt_link/res/Roboto.ttf"
-			text: "Friday requires users to link their Twitter accounts"
 			font_size: "15dp"
-			halign: 'center'
-			valign: 'middle'
-			pos_hint: {"x": 0, "y": 0.175}
-		Button:
-			on_release: app.allow()
-			background_normal: "data/tt_link/res/button.png"
-			background_down: "data/tt_link/res/buttond.png"
-			pos_hint: {"right": .65, "top": 0.38}
-			size_hint: (.3,.042)
-			Label:
-				font_name: "data/tt_link/res/Roboto.ttf"
-				font_size: "15dp"
-				center: self.parent.center
-				text: "Link now"
+			center: self.parent.center
+			text: "Link now"
 
-		Button:
-			on_release: app.deny()
-			background_normal: "data/tt_link/res/button2.png"
-			background_down: "data/tt_link/res/button2d.png"
-			pos_hint: {"right": .75, "top": 0.28}
-			size_hint: (.5,.042)
-			Label:
-				font_name: "data/tt_link/res/Roboto.ttf"
-				font_size: "15dp"
-				center: self.parent.center
-				text: "I'd rather not use Friday"
+	Button:
+		on_release: app.deny()
+		background_normal: "data/tt_link/res/button2.png"
+		background_down: "data/tt_link/res/button2d.png"
+		pos_hint: {"right": .75, "top": 0.28}
+		size_hint: (.5,.042)
+		Label:
+			font_name: "data/tt_link/res/Roboto.ttf"
+			font_size: "15dp"
+			center: self.parent.center
+			text: "I'd rather not use Friday"

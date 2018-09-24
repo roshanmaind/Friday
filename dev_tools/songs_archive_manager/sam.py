@@ -70,7 +70,7 @@ for line in sng_text:
 			print("{}[INFO\t]{} Link captured: {}".format(bcolors.OKGREEN, bcolors.ENDC, link))
 			print()
 			
-			songs[genre].append([line, link])
+			songs[genre].append([line, link, genre])
 
 with open(argv[1], "wb") as file:
 	pickle.dump(songs, file)

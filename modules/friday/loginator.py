@@ -101,11 +101,20 @@ class Register(Screen):
 			self.passwd2 = ""
 			return
 
-		self.database.append([str(self.first), str(self.last), str(self.user), str(self.passwd), "1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890", ""])
+		self.database.append([str(self.first), str(self.last), str(self.user), str(self.passwd), "0" * 100, ""])
 		for i in range(len(self.database)):
 			self.database[i] = [attrib.encode("utf8") for attrib in self.database[i]]
 		with h5py.File(str(root_path + "data/friday/users.hdf5"), "w") as users_file:
 			d = users_file.create_dataset("users", data=self.database)
+
+		liked = [[str(self.user).encode("utf8"), str("0" * 100).encode("utf8"), "".encode("utf8")]]
+		with h5py.File(str(root_path + "data/friday/liked.hdf5"), "a") as file:
+			file.create_dataset(str(self.user), data=liked)
+
+		disliked = [[str(self.user).encode("utf8"), str("0" * 100).encode("utf8"), "".encode("utf8")]]
+		with h5py.File(str(root_path + "data/friday/disliked.hdf5"), "a") as file:
+			file.create_dataset(str(self.user), data=disliked)
+
 		self.message = "Account created! Restart Friday to login."
 		self.first = ""
 		self.last = ""
@@ -148,6 +157,8 @@ class Signin(Screen):
 
 
 class Login(App):
+	def stop(self, *largs):
+		super(Login, self).stop(*largs)
 	def build(self):
 		return Manager()
 
@@ -157,3 +168,6 @@ def login(user):
 	g_user = user
 	Login().run()
 	return g_user
+
+if __name__ == "__main__":
+	login({})

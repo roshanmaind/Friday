@@ -13,9 +13,7 @@ SIGNIN_URL = 'https://api.twitter.com/oauth/authenticate'
 
 def get(consumer_key, consumer_secret):
 	from modules.twitter_interface import link_consent
-	if not link_consent.consent():
-		print("Exiting application on user request")
-		return None, None
+	link_consent.consent()
 	oauth_client = OAuth1Session(consumer_key, client_secret=consumer_secret, callback_uri='oob')
 
 	resp = oauth_client.fetch_request_token(REQUEST_TOKEN_URL)
@@ -42,6 +40,4 @@ def get(consumer_key, consumer_secret):
 			resp = oauth_client.fetch_access_token(ACCESS_TOKEN_URL)
 	except ValueError as e:
 			raise 'Invalid response from Twitter requesting temp token: {0}'.format(e)
-	with open("text.txt", "w") as file:
-		file.write(resp.get('oauth_token') + "\n" + resp.get('oauth_token_secret'))
 	return resp.get('oauth_token'), resp.get('oauth_token_secret')

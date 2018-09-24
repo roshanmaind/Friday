@@ -1,0 +1,397 @@
+<Root>:
+	name: "Root"
+
+	FloatLayout:
+		canvas.before:
+			Rectangle:
+				pos: self.pos
+				size: self.size
+				source: "data/friday/res/bg.jpg"
+
+		AsyncImage:
+			source: "data/friday/res/person.png"
+			pos_hint: {"right": .835, "top": 0.985}
+			size_hint: (.04,.04)
+
+		Label:
+			color: 0.75, 0.75, 0.75
+			font_name: "data/friday/res/Roboto.ttf"
+			text: root.uname
+			font_size: root.uname_size
+			halign: 'center'
+			valign: 'middle'
+			pos_hint: {"right": 0.894, "top": 0.97}
+			size_hint: (0.01, 0.005)
+
+		Button:
+			on_release: root.logout()
+			background_normal: "data/friday/res/logout.png"
+			background_down: "data/friday/res/logout.png"
+			pos_hint: {"right": 1.007, "top": 1.006}
+			size_hint: (0.051, 0.0809)
+
+		Label:
+			color: 1, 1, 1
+			text: "Your Playlist"
+			font_name: "data/friday/res/Amatic.ttf"
+			font_size: "60dp"
+			halign: 'center'
+			valign: 'middle'
+			pos_hint: {"x": -0.26, "y": 0.34}
+
+		# Song 1
+		Label:
+			color: 0.75, 0.75, 0.75
+			text: root.song1
+			font_name: "data/friday/res/Aller.ttf"
+			font_size: "15dp"
+			halign: 'left'
+			valign: 'middle'
+			pos_hint: {"x": -0.23, "y": 0.2}
+
+		Button:	
+			on_release: root.dislike_song1()
+			background_normal: root.song1_dislike_image
+			background_down: root.song1_dislike_image
+			pos_hint: {"right": 0.75, "top": 0.73}
+			size_hint: (0.047, 0.078)
+
+		Button:
+			on_release: root.like_song1()
+			background_normal: root.song1_like_image
+			background_down: root.song1_like_image
+			pos_hint: {"right": 0.85, "top": 0.735}
+			size_hint: (0.047, 0.078)
+
+		Button:
+			on_release: root.listen_song1()
+			background_normal: "data/friday/res/listen.png"
+			background_down: "data/friday/res/listen.png"
+			pos_hint: {"right": 0.8, "top": 0.73}
+			size_hint: (0.043, 0.07)
+
+		AsyncImage:
+			source: "data/friday/res/separator.png"
+			pos_hint: {"x": 0.215, "y": 0.64}
+			size_hint: (.58,.05)
+
+
+		# Song 2		
+		Label:
+			color: 0.75, 0.75, 0.75
+			text: root.song2
+			font_name: "data/friday/res/Aller.ttf"
+			font_size: "15dp"
+			halign: 'left'
+			valign: 'middle'
+			pos_hint: {"x": -0.23, "y": 0.14}
+
+		Button:	
+			on_release: root.dislike_song2()
+			background_normal: root.song2_dislike_image
+			background_down: root.song2_dislike_image
+			pos_hint: {"right": 0.75, "top": 0.67}
+			size_hint: (0.047, 0.078)
+
+		Button:
+			on_release: root.like_song2()
+			background_normal: root.song2_like_image
+			background_down: root.song2_like_image
+			pos_hint: {"right": 0.85, "top": 0.675}
+			size_hint: (0.047, 0.078)
+
+		Button:
+			on_release: root.listen_song2()
+			background_normal: "data/friday/res/listen.png"
+			background_down: "data/friday/res/listen.png"
+			pos_hint: {"right": 0.8, "top": 0.67}
+			size_hint: (0.043, 0.07)
+
+		AsyncImage:
+			source: "data/friday/res/separator.png"
+			pos_hint: {"x": 0.215, "y": 0.58}
+			size_hint: (.58,.05)
+
+
+		# Song 3
+		Label:
+			color: 0.75, 0.75, 0.75
+			text: root.song3
+			font_name: "data/friday/res/Aller.ttf"
+			font_size: "15dp"
+			halign: 'left'
+			valign: 'middle'
+			pos_hint: {"x": -0.23, "y": 0.08}
+
+		Button:	
+			on_release: root.dislike_song3()
+			background_normal: root.song3_dislike_image
+			background_down: root.song3_dislike_image
+			pos_hint: {"right": 0.75, "top": 0.61}
+			size_hint: (0.047, 0.078)
+
+		Button:
+			on_release: root.like_song3()
+			background_normal: root.song3_like_image
+			background_down: root.song3_like_image
+			pos_hint: {"right": 0.85, "top": 0.615}
+			size_hint: (0.047, 0.078)
+
+		Button:
+			on_release: root.listen_song3()
+			background_normal: "data/friday/res/listen.png"
+			background_down: "data/friday/res/listen.png"
+			pos_hint: {"right": 0.8, "top": 0.61}
+			size_hint: (0.043, 0.07)
+
+		AsyncImage:
+			source: "data/friday/res/separator.png"
+			pos_hint: {"x": 0.215, "y": 0.52}
+			size_hint: (.58,.05)
+
+		# Song 4
+		Label:
+			color: 0.75, 0.75, 0.75
+			text: root.song4
+			font_name: "data/friday/res/Aller.ttf"
+			font_size: "15dp"
+			halign: 'left'
+			valign: 'middle'
+			pos_hint: {"x": -0.23, "y": 0.02}
+
+		Button:	
+			on_release: root.dislike_song4()
+			background_normal: root.song4_dislike_image
+			background_down: root.song4_dislike_image
+			pos_hint: {"right": 0.75, "top": 0.55}
+			size_hint: (0.047, 0.078)
+
+		Button:
+			on_release: root.like_song4()
+			background_normal: root.song4_like_image
+			background_down: root.song4_like_image
+			pos_hint: {"right": 0.85, "top": 0.555}
+			size_hint: (0.047, 0.078)
+
+		Button:
+			on_release: root.listen_song4()
+			background_normal: "data/friday/res/listen.png"
+			background_down: "data/friday/res/listen.png"
+			pos_hint: {"right": 0.8, "top": 0.55}
+			size_hint: (0.043, 0.07)
+
+		AsyncImage:
+			source: "data/friday/res/separator.png"
+			pos_hint: {"x": 0.215, "y": 0.46}
+			size_hint: (.58,.05)
+
+		# Song 5
+		Label:
+			color: 0.75, 0.75, 0.75
+			text: root.song5
+			font_name: "data/friday/res/Aller.ttf"
+			font_size: "15dp"
+			halign: 'left'
+			valign: 'middle'
+			pos_hint: {"x": -0.23, "y": -0.04}
+
+		Button:	
+			on_release: root.dislike_song5()
+			background_normal: root.song5_dislike_image
+			background_down: root.song5_dislike_image
+			pos_hint: {"right": 0.75, "top": 0.49}
+			size_hint: (0.047, 0.078)
+
+		Button:
+			on_release: root.like_song5()
+			background_normal: root.song5_like_image
+			background_down: root.song5_like_image
+			pos_hint: {"right": 0.85, "top": 0.495}
+			size_hint: (0.047, 0.078)
+
+		Button:
+			on_release: root.listen_song5()
+			background_normal: "data/friday/res/listen.png"
+			background_down: "data/friday/res/listen.png"
+			pos_hint: {"right": 0.8, "top": 0.49}
+			size_hint: (0.043, 0.07)
+
+		AsyncImage:
+			source: "data/friday/res/separator.png"
+			pos_hint: {"x": 0.215, "y": 0.4}
+			size_hint: (.58,.05)
+
+		# Song 6
+		Label:
+			color: 0.75, 0.75, 0.75
+			text: root.song6
+			font_name: "data/friday/res/Aller.ttf"
+			font_size: "15dp"
+			halign: 'left'
+			valign: 'middle'
+			pos_hint: {"x": -0.23, "y": -0.1}
+
+		Button:	
+			on_release: root.dislike_song6()
+			background_normal: root.song6_dislike_image
+			background_down: root.song6_dislike_image
+			pos_hint: {"right": 0.75, "top": 0.43}
+			size_hint: (0.047, 0.078)
+
+		Button:
+			on_release: root.like_song6()
+			background_normal: root.song6_like_image
+			background_down: root.song6_like_image
+			pos_hint: {"right": 0.85, "top": 0.435}
+			size_hint: (0.047, 0.078)
+
+		Button:
+			on_release: root.listen_song6()
+			background_normal: "data/friday/res/listen.png"
+			background_down: "data/friday/res/listen.png"
+			pos_hint: {"right": 0.8, "top": 0.43}
+			size_hint: (0.043, 0.07)
+
+		AsyncImage:
+			source: "data/friday/res/separator.png"
+			pos_hint: {"x": 0.215, "y": 0.34}
+			size_hint: (.58,.05)
+
+		# Song 7
+		Label:
+			color: 0.75, 0.75, 0.75
+			text: root.song7
+			font_name: "data/friday/res/Aller.ttf"
+			font_size: "15dp"
+			halign: 'left'
+			valign: 'middle'
+			pos_hint: {"x": -0.23, "y": -0.16}
+
+		Button:	
+			on_release: root.dislike_song7()
+			background_normal: root.song7_dislike_image
+			background_down: root.song7_dislike_image
+			pos_hint: {"right": 0.75, "top": 0.37}
+			size_hint: (0.047, 0.078)
+
+		Button:
+			on_release: root.like_song7()
+			background_normal: root.song7_like_image
+			background_down: root.song7_like_image
+			pos_hint: {"right": 0.85, "top": 0.375}
+			size_hint: (0.047, 0.078)
+
+		Button:
+			on_release: root.listen_song7()
+			background_normal: "data/friday/res/listen.png"
+			background_down: "data/friday/res/listen.png"
+			pos_hint: {"right": 0.8, "top": 0.37}
+			size_hint: (0.043, 0.07)
+
+		AsyncImage:
+			source: "data/friday/res/separator.png"
+			pos_hint: {"x": 0.215, "y": 0.28}
+			size_hint: (.58,.05)
+
+		# Song 8
+		Label:
+			color: 0.75, 0.75, 0.75
+			text: root.song8
+			font_name: "data/friday/res/Aller.ttf"
+			font_size: "15dp"
+			halign: 'left'
+			valign: 'middle'
+			pos_hint: {"x": -0.23, "y": -0.22}
+
+		Button:	
+			on_release: root.dislike_song8()
+			background_normal: root.song8_dislike_image
+			background_down: root.song8_dislike_image
+			pos_hint: {"right": 0.75, "top": 0.31}
+			size_hint: (0.047, 0.078)
+
+		Button:
+			on_release: root.like_song8()
+			background_normal: root.song8_like_image
+			background_down: root.song8_like_image
+			pos_hint: {"right": 0.85, "top": 0.315}
+			size_hint: (0.047, 0.078)
+
+		Button:
+			on_release: root.listen_song8()
+			background_normal: "data/friday/res/listen.png"
+			background_down: "data/friday/res/listen.png"
+			pos_hint: {"right": 0.8, "top": 0.31}
+			size_hint: (0.043, 0.07)
+
+		AsyncImage:
+			source: "data/friday/res/separator.png"
+			pos_hint: {"x": 0.215, "y": 0.22}
+			size_hint: (.58,.05)
+
+		# Song 9
+		Label:
+			color: 0.75, 0.75, 0.75
+			text: root.song9
+			font_name: "data/friday/res/Aller.ttf"
+			font_size: "15dp"
+			halign: 'left'
+			valign: 'middle'
+			pos_hint: {"x": -0.23, "y": -0.28}
+
+		Button:	
+			on_release: root.dislike_song9()
+			background_normal: root.song9_dislike_image
+			background_down: root.song9_dislike_image
+			pos_hint: {"right": 0.75, "top": 0.25}
+			size_hint: (0.047, 0.078)
+
+		Button:
+			on_release: root.like_song9()
+			background_normal: root.song9_like_image
+			background_down: root.song9_like_image
+			pos_hint: {"right": 0.85, "top": 0.255}
+			size_hint: (0.047, 0.078)
+
+		Button:
+			on_release: root.listen_song9()
+			background_normal: "data/friday/res/listen.png"
+			background_down: "data/friday/res/listen.png"
+			pos_hint: {"right": 0.8, "top": 0.25}
+			size_hint: (0.043, 0.07)
+
+		AsyncImage:
+			source: "data/friday/res/separator.png"
+			pos_hint: {"x": 0.215, "y": 0.16}
+			size_hint: (.58,.05)
+
+		# Song 10
+		Label:
+			color: 0.75, 0.75, 0.75
+			text: root.song10
+			font_name: "data/friday/res/Aller.ttf"
+			font_size: "15dp"
+			halign: 'left'
+			valign: 'middle'
+			pos_hint: {"x": -0.23, "y": -0.34}
+
+		Button:	
+			on_release: root.dislike_song10()
+			background_normal: root.song10_dislike_image
+			background_down: root.song10_dislike_image
+			pos_hint: {"right": 0.75, "top": 0.19}
+			size_hint: (0.047, 0.078)
+
+		Button:
+			on_release: root.like_song10()
+			background_normal: root.song10_like_image
+			background_down: root.song10_like_image
+			pos_hint: {"right": 0.85, "top": 0.195}
+			size_hint: (0.047, 0.078)
+
+		Button:
+			on_release: root.listen_song10()
+			background_normal: "data/friday/res/listen.png"
+			background_down: "data/friday/res/listen.png"
+			pos_hint: {"right": 0.8, "top": 0.19}
+			size_hint: (0.043, 0.07)

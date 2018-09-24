@@ -2,8 +2,8 @@
 */__pycache__
 __pycache__
 temp*
-collector.py
 *.log
 */*.log
 */*/*.log
-watson_creds.txt
+watson.keys
+twitter.keys

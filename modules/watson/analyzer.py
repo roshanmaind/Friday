@@ -1,12 +1,13 @@
 from watson_developer_cloud import ToneAnalyzerV3
 from watson_developer_cloud.watson_service import WatsonApiException
+import pickle
 
 username = ""
 password = ""
-with open("watson_creds.txt", "r") as file:
-	lines = file.read().split("\n")
-	username = lines[0].split(" ")[1]
-	password = lines[1].split(" ")[1]
+
+with open("watson.keys", "rb") as file:
+	creds = pickle.load(file)
+	username, password = creds[0], creds[1]
 
 watson = ToneAnalyzerV3(
             username=username,
