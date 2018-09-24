@@ -1,17 +1,4 @@
-from kivy.app import App
-try:
-	App.get_running_app().stop()
-except:
-	pass
 
-from kivy.config import Config
-Config.set('graphics', 'width', '1120')
-Config.set('graphics', 'height', '700')
-Config.set('graphics', 'resizable', False)
-
-from kivy.uix.screenmanager import Screen, ScreenManager
-from kivy.properties import StringProperty
-from selenium import webdriver
 
 userG = {}
 
@@ -269,6 +256,21 @@ class Friday(App):
 		return Root()
 
 def run(user):
+	from kivy.app import App
+	try:
+		App.get_running_app().stop()
+	except:
+		pass
+
+	from kivy.config import Config
+	Config.set('graphics', 'width', '1120')
+	Config.set('graphics', 'height', '700')
+	Config.set('graphics', 'resizable', False)
+
+	from kivy.uix.screenmanager import Screen, ScreenManager
+	from kivy.properties import StringProperty
+	from selenium import webdriver
+	
 	global userG
 	userG = user
 	userG["logged_out"] = False

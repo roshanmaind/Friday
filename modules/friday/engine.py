@@ -7,10 +7,11 @@ def split_list(artists, seperator):
 	for artist in artists:
 		if artist.split(seperator) != [artist]:
 			artists.remove(artist)
+	return artists
 
 
 def individualize(artists):
-	for seperator in (",", "+", "&", "Featuring"):
+	for seperator in (",", "+", "&", "Featuring"):	
 		artists = split_list(artists, seperator)
 	for i in range(len(artists)):
 		artists[i] = artists[i].strip()
@@ -39,17 +40,11 @@ def tweets_have(user, string):
 
 def recommend(user):
 	songs, liked, disliked = None, None, None
-	with open("../../data/friday/songs.bin", "rb") as file:
+	with open("data/friday/songs.bin", "rb") as file:
 		songs = pickle.load(file)
-	with h5py.File("../../data/friday/liked.hdf5", "r") as file:
-		liked = file[user["username"]]
-	with h5py.File("../../data/friday/disliked.hdf5", "r") as file:
-		disliked = file[user["username"]]
-	liked = [s.decode("utf8") for s in liked]
-	disliked = [s.decode("utf8") for s in disliked]
 
-	all_songs = set()
-	all_artists = set()
+	all_songs = []
+	all_artists = []
 	liked_artists = {}
 	disliked_artists = {}
 	liked_genre = {}
@@ -60,13 +55,16 @@ def recommend(user):
 		for song in songs[genre]:
 			# giving "greatest of all time" songs a preference
 			if genre == "goat":
-				all_songs.add(song + [1])
+				if list(song + [0]) not in all_songs:
+					all_songs.append(song + [1])
 			else:
-				all_songs.add(song + [0])
+				if list(song + [0]) not in all_songs:
+					all_songs.append(song + [0])
 
 			artists = individualize([song[0].split("~")[1].strip()])
 			for artist in artists:
-				all_artists.add(artist)
+				if artist not in all_artists:
+					all_artists.append(artist)
 
 	for song in user["liked"]:
 		artists = individualize([song[0].split("~")[1].strip()])
@@ -104,26 +102,15 @@ def recommend(user):
 	"""
 
 	for song in all_songs:
-		# mentions in tweets
-		negatives = ["anger", "sadness"]
-		positives = ["joy"]
+		if "tone" in user.keys():
+			# mentions in tweets
+			negatives = ["anger", "sadness"]
+			positives = ["joy"]
 
-		artists = individualize([song[0].split("~")[1].strip()])
+			artists = individualize([song[0].split("~")[1].strip()])
 
-		## check the mention of this song's genre
-		they_do, tones = tweets_have(user, song[2])	
-		if they_do:
-			tone_ids = [t["tone_id"] for t in tones]
-			if any([pos in tone_ids for pos in positives]):
-				song[3] += 3
-			elif any([neg in tone_ids for neg in negatives]):
-				song[3] -= 3
-			else:
-				song[3] += 2
-
-		## check the mention of this song's artist's name
-		for artist in artists:
-			they_do, tones = tweets_have(user, artist)
+			## check the mention of this song's genre
+			they_do, tones = tweets_have(user, song[2])	
 			if they_do:
 				tone_ids = [t["tone_id"] for t in tones]
 				if any([pos in tone_ids for pos in positives]):
@@ -133,44 +120,56 @@ def recommend(user):
 				else:
 					song[3] += 2
 
-		## check the mention of this song's name
-		they_do, tones = tweets_have(user, song[0].split("~")[0].strip())
-		if they_do:
-			tone_ids = [t["tone_id"] for t in tones]
-			for s in all_songs:
-				### judge other songs based on artists
-				for artist in artists:
-					if artist in s[0]:
+			## check the mention of this song's artist's name
+			for artist in artists:
+				they_do, tones = tweets_have(user, artist)
+				if they_do:
+					tone_ids = [t["tone_id"] for t in tones]
+					if any([pos in tone_ids for pos in positives]):
+						song[3] += 3
+					elif any([neg in tone_ids for neg in negatives]):
+						song[3] -= 3
+					else:
+						song[3] += 2
+
+			## check the mention of this song's name
+			they_do, tones = tweets_have(user, song[0].split("~")[0].strip())
+			if they_do:
+				tone_ids = [t["tone_id"] for t in tones]
+				for s in all_songs:
+					### judge other songs based on artists
+					for artist in artists:
+						if artist in s[0]:
+							if any([pos in tone_ids for pos in positives]):
+								s[3] += 3
+							elif any([neg in tone_ids for neg in negatives]):
+								s[3] -= 3
+							else:
+								s[3] += 2
+					### judge other songs based on genre
+					if s[2] == song[2]:
 						if any([pos in tone_ids for pos in positives]):
 							s[3] += 3
 						elif any([neg in tone_ids for neg in negatives]):
 							s[3] -= 3
 						else:
 							s[3] += 2
-				### judge other songs based on genre
-				if s[2] == song[2]:
-					if any([pos in tone_ids for pos in positives]):
-						s[3] += 3
-					elif any([neg in tone_ids for neg in negatives]):
-						s[3] -= 3
-					else:
-						s[3] += 2
 
-		# overall sentiment of the tweets
-		link = {
-			"anger": ("hip-hop", "rock", "edm"),
-			"fear": (),                        ## neutral sentiment in this context
-			"joy": ("hip-hop", "rock", "edm", "pop", "country"),
-			"sadness": ("classical", "rock", "pop", "jazz", "country"),
-			"analytical": ("classical", "jazz", "country"),
-			"confident": (),                   ## neutral sentiment in this context
-			"tentative": ()                    ## neutral sentiment in this context
-		}
-		overall_sentiment = user["tone"]["document_tone"]["tones"]
+			# overall sentiment of the tweets
+			link = {
+				"anger": ("hip-hop", "rock", "edm"),
+				"fear": (),                        ## neutral sentiment in this context
+				"joy": ("hip-hop", "rock", "edm", "pop", "country"),
+				"sadness": ("classical", "rock", "pop", "jazz", "country"),
+				"analytical": ("classical", "jazz", "country"),
+				"confident": (),                   ## neutral sentiment in this context
+				"tentative": ()                    ## neutral sentiment in this context
+			}
+			overall_sentiment = user["tone"]["document_tone"]["tones"]
 
-		for sentiment in overall_sentiment:
-				if song[2] in link[sentiment["tone_id"]]:
-					song[3] += round(sentiment["score"] * 2)
+			for sentiment in overall_sentiment:
+					if song[2] in link[sentiment["tone_id"]]:
+						song[3] += round(sentiment["score"] * 2)
 
 		# likes and dislikes
 		## likes
@@ -187,6 +186,9 @@ def recommend(user):
 		if song[2] in disliked_genre.keys():
 			song[3] -= 1 * disliked_genre[song[2]]		
 
+	for song in all_songs:
+		print(song)
+		
 	lowest = min([song[3] for song in all_songs])
 	extra = 1 - lowest if lowest < 0 else 0
 	for song in all_songs:

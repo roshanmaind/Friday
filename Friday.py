@@ -1,6 +1,7 @@
 from modules.twitter_interface import tweets
 from modules import watson
 from modules.friday import engine
+from os import system
 import os
 import pickle
 import h5py
@@ -33,24 +34,31 @@ def load_likes_and_dislikes(user):
 		user["liked"] = []
 		for song in file[user["username"]]:
 			user["liked"].append([song[0].decode("utf8"), song[1].decode("utf8"), song[2].decode("utf8"), 0])
+		user["liked"].pop(0)
 	with h5py.File(root_path + "data/friday/dislikes.hdf5", "r") as file:
 		user["disliked"] = []
 		for song in file[user["username"]]:
 			user["disliked"].append([song[0].decode("utf8"), song[1].decode("utf8"), song[2].decode("utf8"), 0])
-	print(user["liked"])
+		user["disliked"].pop(0)
 	return user
 
 def save_likes_and_dislikes(user):
 	for i in range(len(user["liked"])):
 		user["liked"][i].pop(3)
+		for j in range(len(user["liked"][i])):
+			user["liked"][i][j] = user["liked"][i][j].encode("utf8")
 	for i in range(len(user["disliked"])):
 		user["disliked"][i].pop(3)
+		for j in range(len(user["disliked"][i])):
+			user["disliked"][i][j] = user["disliked"][i][j].encode("utf8")
 	with h5py.File(root_path + "data/friday/likes.hdf5", "a") as file:
 		del file[user["username"]]
+		user["liked"] = [user["username".encode("ut8"), str("0" * 100).encode("utf8"), "".encode("utf8")]] + user["liked"]
 		file.create_dataset(user["username"], data=user["liked"])
 
 	with h5py.File(root_path + "data/friday/dislikes.hdf5", "a") as file:
 		del file[user["username"]]
+		user["disliked"] = [user["username".encode("ut8"), str("0" * 100).encode("utf8"), "".encode("utf8")]] + user["disliked"]
 		file.create_dataset(user["username"], data=user["disliked"])
 
 def check_login(user):
@@ -61,16 +69,17 @@ def check_login(user):
 			print("Bye!")
 			exit()
 		print("Signed in as", user["first_name"], user["last_name"])
+		return user
 
 def save_user_keys(user):
 	database = None
 	with h5py.File(root_path + "data/friday/users.hdf5", "r") as users_file:
-		database = users_file["users"]
+		database = list(users_file["users"])
 		for i in range(len(database)):
 			if database[i][2] == user["username"].encode("utf8"):
 				database[i][4] = user["access_key"].encode("utf8")
 				database[i][5] = user["access_secret"].encode("utf8")
-				break
+	system("rm " + root_path + "data/friday/users.hdf5")
 	with h5py.File(root_path + "data/friday/users.hdf5", "w") as users_file:
 		d = users_file.create_dataset("users", data=database)
 
@@ -78,7 +87,7 @@ def main():
 	while True:
 		user = load_session()
 
-		check_login(user)
+		user = check_login(user)
 
 		user = load_likes_and_dislikes(user)
 

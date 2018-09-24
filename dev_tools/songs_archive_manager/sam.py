@@ -4,8 +4,8 @@ from selenium.webdriver.firefox.options import Options
 import re
 from sys import argv
 
-if len(argv) < 3:
-	print("python sam.py <path/to/songs/database>.pkl <sng_file_name>.sng")
+if len(argv) < 2:
+	print("python sam.py <sng_file_name>.sng")
 	exit()
 
 # fancy log printing stuff
@@ -19,7 +19,7 @@ class bcolors:
 	BOLD = '\033[1m'
 	UNDERLINE = '\033[4m'
 
-with open(argv[2], "r") as sng:
+with open(argv[0][:len(argv[0]) - 6] + argv[1], "r") as sng:
 	sng_text = sng.read().split("\n")
 
 GLOBAL = 0
@@ -72,6 +72,6 @@ for line in sng_text:
 			
 			songs[genre].append([line, link, genre])
 
-with open(argv[1], "wb") as file:
+with open("data/friday/songs.bin", "wb") as file:
 	pickle.dump(songs, file)
 	print("Save successful")

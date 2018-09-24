@@ -167,6 +167,8 @@ def login(user):
 	global g_user
 	g_user = user
 	Login().run()
+	from kivy.core.window import Window
+	Window.close()
 	return g_user
 
 if __name__ == "__main__":
