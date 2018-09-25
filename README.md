@@ -11,9 +11,9 @@ within your device.
   
 ![1](data/screens/1.png)
   
-![2](data/screens/1.png)
+![2](data/screens/2.png)
     
-![3](data/screens/1.png)
+![3](data/screens/3.png)
   
 ## Requirements
 1. Debian based Linux OS  
