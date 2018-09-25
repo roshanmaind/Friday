@@ -11,12 +11,14 @@ class Permission(App):
 		exit()
 
 	def build(self):
+		self.icon = 'data/friday/res/icon.ico'
 		return FloatLayout()
 
 def consent():
 	Config.set('graphics', 'width', '500')
 	Config.set('graphics', 'height', '640')
 	Config.set('graphics', 'resizable', False)
+	Config.set('kivy','window_icon','data/friday/res/icon.ico')
 	Window.__init__()
 	Permission().run()
 	Window.close()

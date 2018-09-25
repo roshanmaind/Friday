@@ -206,9 +206,9 @@ def recommend(user):
 
 	lowest = round(min([song[3] for song in all_songs]))
 	extra = 1 - lowest if lowest <= 0 else 0
+	print("Promoted songs and final score:- ")
 	for song in all_songs:
 		final_pool += [song]*(round(song[3]) + extra)
-		print("Promoted songs and final score:- ")
 		if song[3] > 0:
 			print(song[0], "| Score:", (round(song[3]) + extra))
 

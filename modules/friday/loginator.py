@@ -10,8 +10,6 @@ root_path = os.path.realpath(__file__)
 root_path = root_path[:len(root_path)- 27]
 
 
-
-
 from kivy.core.window import Window
 
 g_user = None
@@ -157,6 +155,7 @@ class Signin(Screen):
 
 class Login(App):
 	def build(self):
+		self.icon = 'data/friday/res/icon.ico'
 		return Manager()
 
 
@@ -164,6 +163,7 @@ def login(user):
 	Config.set('graphics', 'width', '500')
 	Config.set('graphics', 'height', '640')
 	Config.set('graphics', 'resizable', False)
+	Config.set('kivy','window_icon','data/friday/res/icon.ico')
 	Window.__init__()
 	global g_user
 	g_user = user
