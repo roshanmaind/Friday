@@ -11,6 +11,8 @@ within your device.
 1. Debian based Linux OS  
 2. Python3  
   
+(Python module requirements and other tool requirements installation is handled by the setup script)
+  
 ## Installation & Use
 Run the python script "setup.py" and then to use the software, run Friday.py.  
   
