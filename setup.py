@@ -1,5 +1,6 @@
 import sys
 from os import system
+from os import getcwd
 
 if sys.platform == "linux":
 	print('''
@@ -14,6 +15,8 @@ This setup will install on your machine the following softwares and packages:-
 5. kivy
 6. h5py
 7. python-twitter
+8. Selenium
+9. geckodriver
 
 The softwares or packages that already exist will be skipped.
 
@@ -31,6 +34,17 @@ Do you wish to continue? (Y/N):''', end=" ")
 	system("pip3 install -r requirements.txt")
 
 	print("Modules installation finished.")
+
+	print("Installing geckodriver")
+
+	system("wget https://github.com/mozilla/geckodriver/releases/download/v0.22.0/geckodriver-v0.22.0-arm7hf.tar.gz")
+	system("tar -xvzf geckodriver*")
+	system("chmod +x geckodriver")
+	system("echo 'export PATH=$PATH:" + getcwd() +"' >> ~/.bashrc")
+
+	print("Installation Complete!")
+	print("Run Friday.py to use the app.")
+
 
 
 
