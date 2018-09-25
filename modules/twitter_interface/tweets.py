@@ -24,7 +24,7 @@ Obtain them from the owner of the official Friday repository, @roshanmaind.
 Aborting...
 		""")
 	exit()
-	
+
 
 
 class TweetAge():
@@ -102,7 +102,8 @@ def get_tweets(user):
 	user["tweets"] = tweets
 	user["access_key"] = atk
 	user["access_secret"] = ats
-
+	print("Received the following tweets of the user")
+	print(user["tweets"])
 	return (not linked), user
 
 

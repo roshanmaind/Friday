@@ -39,9 +39,14 @@ def analyze(user):
 	for tweet in tweets:
 		tone_input = tone_input + " <p> " + tweet + " </p> "
 	try:
-		user["tone"] = watson.tone(tone_input, content_type='text/html')
+		user["tone"] = watson.tone(tone_input, content_type='text/html').get_result()
 	except WatsonApiException as we:
 		print(we)
+	print("Got the following tones in the user's tweets:")
+	if "tone" in user.keys():
+		print(user["tone"])
+	else:
+		print("No tweets were found so no sentiment analysis results generated")
 	return user
 
 

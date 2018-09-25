@@ -5,7 +5,7 @@ from kivy.core.window import Window
 
 class Permission(App):
 	def allow(self, *largs):
-		self.stop()
+		App.get_running_app().stop()
 		
 	def deny(self, *largs):
 		exit()

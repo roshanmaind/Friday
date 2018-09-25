@@ -48,7 +48,6 @@ def save_likes_and_dislikes(user):
 		for j in range(len(user["liked"][i])):
 			user["liked"][i][j] = user["liked"][i][j].encode("utf8")
 	for i in range(len(user["disliked"])):
-		print(user["disliked"][i])
 		user["disliked"][i].pop(3)
 		for j in range(len(user["disliked"][i])):
 			user["disliked"][i][j] = user["disliked"][i][j].encode("utf8")
@@ -102,7 +101,6 @@ Aborting...
 	user = check_login(user)
 
 	user = load_likes_and_dislikes(user)
-
 	got_new_keys, user = tweets.get_tweets(user)
 	if got_new_keys:
 		print("Saving user access tokens")
