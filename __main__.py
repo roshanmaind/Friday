@@ -1,3 +1,0 @@
-import Friday
-
-Friday.main()
