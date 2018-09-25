@@ -1,6 +1,7 @@
 from watson_developer_cloud import ToneAnalyzerV3
 from watson_developer_cloud.watson_service import WatsonApiException
 import pickle
+import json
 
 username = ""
 password = ""
@@ -44,7 +45,7 @@ def analyze(user):
 		print(we)
 	print("Got the following tones in the user's tweets:")
 	if "tone" in user.keys():
-		print(user["tone"])
+		print(json.dumps(user["tone"], indent=2))
 	else:
 		print("No tweets were found so no sentiment analysis results generated")
 	return user

@@ -102,8 +102,10 @@ def get_tweets(user):
 	user["tweets"] = tweets
 	user["access_key"] = atk
 	user["access_secret"] = ats
-	print("Received the following tweets of the user")
-	print(user["tweets"])
+	if len(user["tweets"]):
+		print("Received the following tweets of the user:-")
+		for tweet in user["tweets"]:
+			print(tweet)
 	return (not linked), user
 
 
