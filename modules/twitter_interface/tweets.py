@@ -12,9 +12,19 @@ Using Twitter API with user access keys got from OAuth to get last 24 hours' twe
 CONSUMER_KEY = ''
 CONSUMER_SECRET = ''
 
-with open("twitter.keys", "rb") as file:
-	creds = pickle.load(file)
-	CONSUMER_KEY, CONSUMER_SECRET = creds[0], creds[1]
+try:
+	with open("twitter.keys", "rb") as file:
+		creds = pickle.load(file)
+		CONSUMER_KEY, CONSUMER_SECRET = creds[0], creds[1]
+except FileNotFoundError:
+	print("""
+Key files not found in the root directory. The app will not work without key files.
+Obtain them from the owner of the official Friday repository, @roshanmaind.
+
+Aborting...
+		""")
+	exit()
+	
 
 
 class TweetAge():

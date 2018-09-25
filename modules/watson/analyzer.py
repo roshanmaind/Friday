@@ -4,10 +4,18 @@ import pickle
 
 username = ""
 password = ""
+try:
+	with open("watson.keys", "rb") as file:
+		creds = pickle.load(file)
+		username, password = creds[0], creds[1]
+except FileNotFoundError:
+	print("""
+Key files not found in the root directory. The app will not work without key files.
+Obtain them from the owner of the official Friday repository, @roshanmaind.
 
-with open("watson.keys", "rb") as file:
-	creds = pickle.load(file)
-	username, password = creds[0], creds[1]
+Aborting...
+		""")
+	exit()
 
 watson = ToneAnalyzerV3(
             username=username,
