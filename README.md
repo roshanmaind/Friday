@@ -7,6 +7,14 @@ like Twitter and your interaction with the app itself to estimate what you would
 For concerned potential users, your data is never sent to any external server. All of the data is always stored locally  
 within your device.  
   
+## Screenshots
+  
+![1](data/screens/1.png)
+  
+![2](data/screens/1.png)
+    
+![3](data/screens/1.png)
+  
 ## Requirements
 1. Debian based Linux OS  
 2. Python3  
