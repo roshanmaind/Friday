@@ -1,22 +1,23 @@
+from kivy.lang.builder import Builder
+Builder.unload_file('modules/friday/login.kv')
+Builder.unload_file('modules/twitter_interface/permission.kv')
+Builder.load_file('modules/friday/friday.kv')
 from kivy.app import App
-try:
-	App.get_running_app().stop()
-except:
-	pass
-
 from kivy.config import Config
+Config.set('graphics', 'width', '1120')
+Config.set('graphics', 'height', '700')
+Config.set('graphics', 'resizable', False)
 from kivy.core.window import Window
+Window.__init__()
 from kivy.uix.screenmanager import Screen, ScreenManager
 from kivy.properties import StringProperty
 from selenium import webdriver
-
 
 userG = {}
 
 def go_to(url):
 	driver = webdriver.Firefox()
 	driver.get(url)
-
 
 class Root(Screen):
 	uname = StringProperty("")
@@ -53,6 +54,7 @@ class Root(Screen):
 	song10_dislike_image = StringProperty("")
 
 	def __init__(self, **kwargs):
+		self.clear_widgets()
 		self.uname=userG["username"]
 		self.uname_size = str(220 // len(self.uname)) + "dp"
 		self.songs = userG["songs"]
@@ -289,10 +291,6 @@ class Friday(App):
 		return Root()
 
 def run(user):
-	Config.set('graphics', 'width', '1120')
-	Config.set('graphics', 'height', '700')
-	Config.set('graphics', 'resizable', False)
-	Window.__init__()
 	global userG
 	userG = user
 	userG["logged_out"] = False
