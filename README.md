@@ -1,19 +1,21 @@
 # Friday
-Powered by Social media Health Analysis and Display Engine and IBM Watson, Friday gives you a  
-personalized playlist curated according to your current mood, music taste and views towards songs, artists  
-or genres. Friday understands your state of mind, your taste in music and your interests in and views  
-towards genres or the buzzing artists and songs and gauges what kind of music you might like to listen to  
-by monitoring your social health and activities.  
+Powered by Social media Health Analysis & Display Engine and IBM Watson, Friday understands your current state of mind,  
+your overall taste in music and your interests and views about songs, artists or genres and gives you a specially curated,  
+personalized playlist of the best song she can find. Friday monitors and processes your activities on social media websites  
+like Twitter and your interaction with the app itself to estimate what you would like the best.
   
-Currently, Friday is limited to your Twitter account only but soon, Facebook accessibility will be added as well.  
-  
-
-Your data is never sent to any external server
-and is always stored temporarily on your local device.  
+For concerned potential users, your data is never sent to any external server. All of the data is always stored locally  
+within your device.  
   
 ## Requirements
-1. Debian based Linux OS
-2. Python3
-
+1. Debian based Linux OS  
+2. Python3  
+  
 ## Installation & Use
-Run the python script "setup.py" and then to use the software, run Friday.py.
+Run the python script "setup.py" and then to use the software, run Friday.py.  
+  
+  
+## Future updates to come
+1. Facebook connectivity.
+2. Access to more frequently used social media services like DM.
+3. Support for Windows, Mac OS and other Linux distros.
