@@ -7,14 +7,6 @@ like Twitter and your interaction with the app itself to estimate what you would
 For concerned potential users, your data is never sent to any external server. All of the data is always stored locally  
 within your device.  
   
-## Screenshots
-  
-![1](data/screens/1.png)
-  
-![2](data/screens/2.png)
-    
-![3](data/screens/3.png)
-  
 ## Requirements
 1. Debian based Linux OS  
 2. Python3  
@@ -29,3 +21,16 @@ Run the python script "setup.py" and then to use the software, run Friday.py.
 1. Facebook connectivity.
 2. Access to more frequently used social media services like DM.
 3. Support for Windows, Mac OS and other Linux distros.
+
+  
+## Screenshots
+  
+![1](data/screens/1.png)
+  
+![2](data/screens/2.png)
+    
+![3](data/screens/3.png)
+
+![4](data/screens/4.png)
+
+![5](data/screens/5.png)
