@@ -10,10 +10,9 @@ root_path = os.path.realpath(__file__)
 root_path = root_path[:len(root_path)- 27]
 
 
-Config.set('graphics', 'width', '500')
-Config.set('graphics', 'height', '640')
-Config.set('graphics', 'resizable', False)
 
+
+from kivy.core.window import Window
 
 g_user = None
 
@@ -157,17 +156,18 @@ class Signin(Screen):
 
 
 class Login(App):
-	def stop(self, *largs):
-		super(Login, self).stop(*largs)
 	def build(self):
 		return Manager()
 
 
 def login(user):
+	Config.set('graphics', 'width', '500')
+	Config.set('graphics', 'height', '640')
+	Config.set('graphics', 'resizable', False)
+	Window.__init__()
 	global g_user
 	g_user = user
 	Login().run()
-	from kivy.core.window import Window
 	Window.close()
 	return g_user
 

@@ -1,3 +1,14 @@
+from kivy.app import App
+try:
+	App.get_running_app().stop()
+except:
+	pass
+
+from kivy.config import Config
+from kivy.core.window import Window
+from kivy.uix.screenmanager import Screen, ScreenManager
+from kivy.properties import StringProperty
+from selenium import webdriver
 
 
 userG = {}
@@ -45,10 +56,13 @@ class Root(Screen):
 		self.uname=userG["username"]
 		self.uname_size = str(220 // len(self.uname)) + "dp"
 		self.songs = userG["songs"]
-		self.song1_like_image, self.song2_like_image, self.song3_like_image, self.song4_like_image, self.song5_like_image = ["../../data/friday/res/like.png"] * 5
-		self.song6_like_image, self.song7_like_image, self.song8_like_image, self.song9_like_image, self.song10_like_image = ["../../data/friday/res/like.png"] * 5
-		self.song1_dislike_image, self.song2_dislike_image, self.song3_dislike_image, self.song4_dislike_image, self.song5_dislike_image = ["../../data/friday/res/dislike.png"] * 5
-		self.song6_dislike_image, self.song7_dislike_image, self.song8_dislike_image, self.song9_dislike_image, self.song10_dislike_image = ["../../data/friday/res/dislike.png"] * 5
+		self.song1_like_image, self.song2_like_image, self.song3_like_image, self.song4_like_image, self.song5_like_image = ["data/friday/res/like.png"] * 5
+		self.song6_like_image, self.song7_like_image, self.song8_like_image, self.song9_like_image, self.song10_like_image = ["data/friday/res/like.png"] * 5
+		self.song1_dislike_image, self.song2_dislike_image, self.song3_dislike_image, self.song4_dislike_image, self.song5_dislike_image = ["data/friday/res/dislike.png"] * 5
+		self.song6_dislike_image, self.song7_dislike_image, self.song8_dislike_image, self.song9_dislike_image, self.song10_dislike_image = ["data/friday/res/dislike.png"] * 5
+		for i in range(len(self.songs)):
+			if len(self.songs[i][0]) > 70:
+				self.songs[i][0] = self.songs[i][0][:67] + "..."
 		self.song1, self.song2, self.song3, self.song4, self.song5, self.song6, self.song7, self.song8, self.song9, self.song10 = (s[0] for s in self.songs)
 		self.liked = [False] * 10
 		super(Screen,self).__init__(**kwargs)
@@ -58,21 +72,22 @@ class Root(Screen):
 		userG["logged_in"] = False
 		userG["logged_out"] = True
 		App.get_running_app().stop()
-		return
 
 	def like_song1(self):
-		self.song1_like_image = "../../data/friday/res/liked.png"
-		self.song1_dislike_image = "../../data/friday/res/dislike.png"
+		self.song1_like_image = "data/friday/res/liked.png"
+		self.song1_dislike_image = "data/friday/res/dislike.png"
 		global userG
-		userG["liked"].append(self.songs[0])
+		if self.songs[0] not in userG["liked"]:
+			userG["liked"].append(self.songs[0])
 		if self.songs[0] in userG["disliked"]:
 			userG["disliked"].remove(self.songs[0])
 
 	def dislike_song1(self):
-		self.song1_dislike_image = "../../data/friday/res/disliked.png"
-		self.song1_like_image = "../../data/friday/res/like.png"
+		self.song1_dislike_image = "data/friday/res/disliked.png"
+		self.song1_like_image = "data/friday/res/like.png"
 		global userG
-		userG["disliked"].append(self.songs[0])
+		if self.songs[0] not in userG["disliked"]:
+			userG["disliked"].append(self.songs[0])
 		if self.songs[0] in userG["liked"]:
 			userG["liked"].remove(self.songs[0])
 
@@ -80,18 +95,20 @@ class Root(Screen):
 		go_to(self.songs[0][1])
 
 	def like_song2(self):
-		self.song2_like_image = "../../data/friday/res/liked.png"
-		self.song2_dislike_image = "../../data/friday/res/dislike.png"
+		self.song2_like_image = "data/friday/res/liked.png"
+		self.song2_dislike_image = "data/friday/res/dislike.png"
 		global userG
-		userG["liked"].append(self.songs[1])
+		if self.songs[1] not in userG["liked"]:
+			userG["liked"].append(self.songs[1])
 		if self.songs[1] in userG["disliked"]:
 			userG["disliked"].remove(self.songs[1])
 
 	def dislike_song2(self):
-		self.song2_dislike_image = "../../data/friday/res/disliked.png"
-		self.song2_like_image = "../../data/friday/res/like.png"
+		self.song2_dislike_image = "data/friday/res/disliked.png"
+		self.song2_like_image = "data/friday/res/like.png"
 		global userG
-		userG["disliked"].append(self.songs[1])
+		if self.songs[1] not in userG["disliked"]:
+			userG["disliked"].append(self.songs[1])
 		if self.songs[1] in userG["liked"]:
 			userG["liked"].remove(self.songs[1])
 
@@ -99,18 +116,20 @@ class Root(Screen):
 		go_to(self.songs[1][1])
 
 	def like_song3(self):
-		self.song3_like_image = "../../data/friday/res/liked.png"
-		self.song3_dislike_image = "../../data/friday/res/dislike.png"
+		self.song3_like_image = "data/friday/res/liked.png"
+		self.song3_dislike_image = "data/friday/res/dislike.png"
 		global userG
-		userG["liked"].append(self.songs[2])
+		if self.songs[2] not in userG["liked"]:
+			userG["liked"].append(self.songs[2])
 		if self.songs[2] in userG["disliked"]:
 			userG["disliked"].remove(self.songs[2])
 
 	def dislike_song3(self):
-		self.song3_dislike_image = "../../data/friday/res/disliked.png"
-		self.song3_like_image = "../../data/friday/res/like.png"
+		self.song3_dislike_image = "data/friday/res/disliked.png"
+		self.song3_like_image = "data/friday/res/like.png"
 		global userG
-		userG["disliked"].append(self.songs[2])
+		if self.songs[2] not in userG["disliked"]:
+			userG["disliked"].append(self.songs[2])
 		if self.songs[2] in userG["liked"]:
 			userG["liked"].remove(self.songs[2])
 
@@ -118,18 +137,20 @@ class Root(Screen):
 		go_to(self.songs[2][1])
 
 	def like_song4(self):
-		self.song4_like_image = "../../data/friday/res/liked.png"
-		self.song4_dislike_image = "../../data/friday/res/dislike.png"
+		self.song4_like_image = "data/friday/res/liked.png"
+		self.song4_dislike_image = "data/friday/res/dislike.png"
 		global userG
-		userG["liked"].append(self.songs[3])
+		if self.songs[3] not in userG["liked"]:
+			userG["liked"].append(self.songs[3])
 		if self.songs[3] in userG["disliked"]:
 			userG["disliked"].remove(self.songs[3])
 
 	def dislike_song4(self):
-		self.song4_dislike_image = "../../data/friday/res/disliked.png"
-		self.song4_like_image = "../../data/friday/res/like.png"
+		self.song4_dislike_image = "data/friday/res/disliked.png"
+		self.song4_like_image = "data/friday/res/like.png"
 		global userG
-		userG["disliked"].append(self.songs[3])
+		if self.songs[3] not in userG["disliked"]:
+			userG["disliked"].append(self.songs[3])
 		if self.songs[3] in userG["liked"]:
 			userG["liked"].remove(self.songs[3])
 
@@ -137,18 +158,20 @@ class Root(Screen):
 		go_to(self.songs[3][1])
 
 	def like_song5(self):
-		self.song5_like_image = "../../data/friday/res/liked.png"
-		self.song5_dislike_image = "../../data/friday/res/dislike.png"
+		self.song5_like_image = "data/friday/res/liked.png"
+		self.song5_dislike_image = "data/friday/res/dislike.png"
 		global userG
-		userG["liked"].append(self.songs[4])
+		if self.songs[4] not in userG["liked"]:
+			userG["liked"].append(self.songs[4])
 		if self.songs[4] in userG["disliked"]:
 			userG["disliked"].remove(self.songs[4])
 
 	def dislike_song5(self):
-		self.song5_dislike_image = "../../data/friday/res/disliked.png"
-		self.song5_like_image = "../../data/friday/res/like.png"
+		self.song5_dislike_image = "data/friday/res/disliked.png"
+		self.song5_like_image = "data/friday/res/like.png"
 		global userG
-		userG["disliked"].append(self.songs[4])
+		if self.songs[4] not in userG["disliked"]:
+			userG["disliked"].append(self.songs[4])
 		if self.songs[4] in userG["liked"]:
 			userG["liked"].remove(self.songs[4])
 
@@ -156,18 +179,20 @@ class Root(Screen):
 		go_to(self.songs[4][1])
 
 	def like_song6(self):
-		self.song6_like_image = "../../data/friday/res/liked.png"
-		self.song6_dislike_image = "../../data/friday/res/dislike.png"
+		self.song6_like_image = "data/friday/res/liked.png"
+		self.song6_dislike_image = "data/friday/res/dislike.png"
 		global userG
-		userG["liked"].append(self.songs[5])
+		if self.songs[5] not in userG["liked"]:
+			userG["liked"].append(self.songs[5])
 		if self.songs[5] in userG["disliked"]:
 			userG["disliked"].remove(self.songs[5])
 
 	def dislike_song6(self):
-		self.song6_dislike_image = "../../data/friday/res/disliked.png"
-		self.song6_like_image = "../../data/friday/res/like.png"
+		self.song6_dislike_image = "data/friday/res/disliked.png"
+		self.song6_like_image = "data/friday/res/like.png"
 		global userG
-		userG["disliked"].append(self.songs[5])
+		if self.songs[5] not in userG["disliked"]:
+			userG["disliked"].append(self.songs[5])
 		if self.songs[5] in userG["liked"]:
 			userG["liked"].remove(self.songs[5])
 
@@ -175,18 +200,20 @@ class Root(Screen):
 		go_to(self.songs[5][1])
 
 	def like_song7(self):
-		self.song7_like_image = "../../data/friday/res/liked.png"
-		self.song7_dislike_image = "../../data/friday/res/dislike.png"
+		self.song7_like_image = "data/friday/res/liked.png"
+		self.song7_dislike_image = "data/friday/res/dislike.png"
 		global userG
-		userG["liked"].append(self.songs[6])
+		if self.songs[6] not in userG["liked"]:
+			userG["liked"].append(self.songs[6])
 		if self.songs[6] in userG["disliked"]:
 			userG["disliked"].remove(self.songs[6])
 
 	def dislike_song7(self):
-		self.song7_dislike_image = "../../data/friday/res/disliked.png"
-		self.song7_like_image = "../../data/friday/res/like.png"
+		self.song7_dislike_image = "data/friday/res/disliked.png"
+		self.song7_like_image = "data/friday/res/like.png"
 		global userG
-		userG["disliked"].append(self.songs[6])
+		if self.songs[6] not in userG["disliked"]:
+			userG["disliked"].append(self.songs[6])
 		if self.songs[6] in userG["liked"]:
 			userG["liked"].remove(self.songs[6])
 
@@ -194,18 +221,20 @@ class Root(Screen):
 		go_to(self.songs[6][1])
 
 	def like_song8(self):
-		self.song8_like_image = "../../data/friday/res/liked.png"
-		self.song8_dislike_image = "../../data/friday/res/dislike.png"
+		self.song8_like_image = "data/friday/res/liked.png"
+		self.song8_dislike_image = "data/friday/res/dislike.png"
 		global userG
-		userG["liked"].append(self.songs[7])
+		if self.songs[7] not in userG["liked"]:
+			userG["liked"].append(self.songs[7])
 		if self.songs[7] in userG["disliked"]:
 			userG["disliked"].remove(self.songs[7])
 
 	def dislike_song8(self):
-		self.song8_dislike_image = "../../data/friday/res/disliked.png"
-		self.song8_like_image = "../../data/friday/res/like.png"
+		self.song8_dislike_image = "data/friday/res/disliked.png"
+		self.song8_like_image = "data/friday/res/like.png"
 		global userG
-		userG["disliked"].append(self.songs[7])
+		if self.songs[7] not in userG["disliked"]:
+			userG["disliked"].append(self.songs[7])
 		if self.songs[7] in userG["liked"]:
 			userG["liked"].remove(self.songs[7])
 
@@ -213,18 +242,20 @@ class Root(Screen):
 		go_to(self.songs[7][1])
 
 	def like_song9(self):
-		self.song9_like_image = "../../data/friday/res/liked.png"
-		self.song9_dislike_image = "../../data/friday/res/dislike.png"
+		self.song9_like_image = "data/friday/res/liked.png"
+		self.song9_dislike_image = "data/friday/res/dislike.png"
 		global userG
-		userG["liked"].append(self.songs[8])
+		if self.songs[8] not in userG["liked"]:
+			userG["liked"].append(self.songs[8])
 		if self.songs[8] in userG["disliked"]:
 			userG["disliked"].remove(self.songs[8])
 
 	def dislike_song9(self):
-		self.song9_dislike_image = "../../data/friday/res/disliked.png"
-		self.song9_like_image = "../../data/friday/res/like.png"
+		self.song9_dislike_image = "data/friday/res/disliked.png"
+		self.song9_like_image = "data/friday/res/like.png"
 		global userG
-		userG["disliked"].append(self.songs[8])
+		if self.songs[8] not in userG["disliked"]:
+			userG["disliked"].append(self.songs[8])
 		if self.songs[8] in userG["liked"]:
 			userG["liked"].remove(self.songs[8])
 
@@ -232,18 +263,20 @@ class Root(Screen):
 		go_to(self.songs[8][1])
 
 	def like_song10(self):
-		self.song10_like_image = "../../data/friday/res/liked.png"
-		self.song10_dislike_image = "../../data/friday/res/dislike.png"
+		self.song10_like_image = "data/friday/res/liked.png"
+		self.song10_dislike_image = "data/friday/res/dislike.png"
 		global userG
-		userG["liked"].append(self.songs[9])
+		if self.songs[9] not in userG["liked"]:
+			userG["liked"].append(self.songs[9])
 		if self.songs[9] in userG["disliked"]:
 			userG["disliked"].remove(self.songs[9])
 
 	def dislike_song10(self):
-		self.song10_dislike_image = "../../data/friday/res/disliked.png"
-		self.song10_like_image = "../../data/friday/res/like.png"
+		self.song10_dislike_image = "data/friday/res/disliked.png"
+		self.song10_like_image = "data/friday/res/like.png"
 		global userG
-		userG["disliked"].append(self.songs[9])
+		if self.songs[9] not in userG["disliked"]:
+			userG["disliked"].append(self.songs[9])
 		if self.songs[9] in userG["liked"]:
 			userG["liked"].remove(self.songs[9])
 
@@ -256,31 +289,21 @@ class Friday(App):
 		return Root()
 
 def run(user):
-	from kivy.app import App
-	try:
-		App.get_running_app().stop()
-	except:
-		pass
-
-	from kivy.config import Config
 	Config.set('graphics', 'width', '1120')
 	Config.set('graphics', 'height', '700')
 	Config.set('graphics', 'resizable', False)
-
-	from kivy.uix.screenmanager import Screen, ScreenManager
-	from kivy.properties import StringProperty
-	from selenium import webdriver
-	
+	Window.__init__()
 	global userG
 	userG = user
 	userG["logged_out"] = False
 	Friday().run()
+	Window.close()
 	user = userG
 	return user
 
 if __name__ == "__main__":
 	run({"username": "roshanmaind",
-	     "songs": [["Song Name - Artist Name", "https://www.youtube.com", "genre"],
+	     "songs": [["Song Name - Artist Name ", "https://www.youtube.com", "genre"],
 		             ["Song Name - Artist Name", "https://www.youtube.com", "genre"],
 		             ["Song Name - Artist Name", "https://www.youtube.com", "genre"],
 		             ["Song Name - Artist Name", "https://www.youtube.com", "genre"],

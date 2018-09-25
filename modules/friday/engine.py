@@ -1,5 +1,6 @@
 import h5py
 import pickle
+import random
 
 def split_list(artists, seperator):
 	for i in range(len(artists)):
@@ -116,7 +117,7 @@ def recommend(user):
 				if any([pos in tone_ids for pos in positives]):
 					song[3] += 3
 				elif any([neg in tone_ids for neg in negatives]):
-					song[3] -= 3
+					song[3] -= 2
 				else:
 					song[3] += 2
 
@@ -126,11 +127,11 @@ def recommend(user):
 				if they_do:
 					tone_ids = [t["tone_id"] for t in tones]
 					if any([pos in tone_ids for pos in positives]):
-						song[3] += 3
+						song[3] += 6
 					elif any([neg in tone_ids for neg in negatives]):
 						song[3] -= 3
 					else:
-						song[3] += 2
+						song[3] += 4
 
 			## check the mention of this song's name
 			they_do, tones = tweets_have(user, song[0].split("~")[0].strip())
@@ -141,17 +142,17 @@ def recommend(user):
 					for artist in artists:
 						if artist in s[0]:
 							if any([pos in tone_ids for pos in positives]):
-								s[3] += 3
+								s[3] += 4
 							elif any([neg in tone_ids for neg in negatives]):
 								s[3] -= 3
 							else:
-								s[3] += 2
+								s[3] += 3
 					### judge other songs based on genre
 					if s[2] == song[2]:
 						if any([pos in tone_ids for pos in positives]):
 							s[3] += 3
 						elif any([neg in tone_ids for neg in negatives]):
-							s[3] -= 3
+							s[3] -= 2
 						else:
 							s[3] += 2
 
@@ -169,13 +170,13 @@ def recommend(user):
 
 			for sentiment in overall_sentiment:
 					if song[2] in link[sentiment["tone_id"]]:
-						song[3] += round(sentiment["score"] * 2)
+						song[3] += round(sentiment["score"] * 3)
 
 		# likes and dislikes
 		## likes
 		for artist in artists:
 			if artist in liked_artists.keys():
-				song[3] += 3 * liked_artists[artist]
+				song[3] += 6 * liked_artists[artist]
 		if song[2] in liked_genre.keys():
 			song[3] += 1 * liked_genre[song[2]]
 
@@ -186,16 +187,16 @@ def recommend(user):
 		if song[2] in disliked_genre.keys():
 			song[3] -= 1 * disliked_genre[song[2]]		
 
-	for song in all_songs:
-		print(song)
-		
 	lowest = min([song[3] for song in all_songs])
-	extra = 1 - lowest if lowest < 0 else 0
+	extra = 1 - lowest if lowest <= 0 else 0
 	for song in all_songs:
+		if "Eminem" in song[0].split("~")[1]:
+			print(song)
 		final_pool += [song] * (song[3] + extra)
 
-	if "songs" not in user.keys():
-		user["songs"] = []
+	if "songs" in user.keys():
+		del user["songs"]
+	user["songs"] = []
 
 	for i in range(10):
 		idx = random.randint(0, len(final_pool) - 1)
