@@ -30,9 +30,9 @@ Simply run the python script "setup.py" and then to use the software, run Friday
   
 #### Windows users
 1. First run the setup.py file to install python modules.  
-2. Follow the complete Kivy installation process as show ![here](https://kivy.org/doc/stable/installation/installation-windows.html)  
-(Make sure you check ![this](https://kivy.org/doc/stable/installation/installation-windows.html#kivy-s-dependencies) section of the guide)  
-3. Then download the Mozilla Firefox geckodriver from ![this link](https://github.com/mozilla/geckodriver/releases)  
+2. Follow the complete Kivy installation process as show [here](https://kivy.org/doc/stable/installation/installation-windows.html)  
+(Make sure you check [this](https://kivy.org/doc/stable/installation/installation-windows.html#kivy-s-dependencies) section of the guide)  
+3. Then download the Mozilla Firefox geckodriver from [this link](https://github.com/mozilla/geckodriver/releases)  
 (Download the right file according to your system type (32 or 64 bit))  
 4. Make a folder in your C drive named "gecko"  
 5. Extract the zip file and put the geckodriver.exe file in the gecko folder made in the previous step  
