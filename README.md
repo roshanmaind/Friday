@@ -46,7 +46,7 @@ set PATH=%PATH%;C:\gecko\
 ## Future updates to come
 1. Facebook connectivity.
 2. Access to more frequently used social media services like DM.
-3. Support for Windows, Mac OS and other Linux distros.
+3. Support for Mac OS and other Linux distros than Debian based.
 
   
 ## Screenshots
