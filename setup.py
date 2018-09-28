@@ -32,7 +32,7 @@ Do you wish to continue? (Y/N):''', end=" ")
 	system("sudo apt-get install mesa-utils freeglut3 freeglut3-dev")
 
 	print("\nInitiating python3-pip installation...")
-	system("sudo apt install python3-pip")
+	system("sudo apt install python-pip python3-pip")
 
 	print("\nInstalling required python3 modules...")
 	system("pip3 install -r requirements.txt")
