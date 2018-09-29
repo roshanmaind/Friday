@@ -1,0 +1,40 @@
+#: import FadeTransition kivy.uix.screenmanager.FadeTransition
+
+<Empty>:
+	FloatLayout:
+		canvas.before:
+			Rectangle:
+				pos: self.pos
+				size: self.size
+				source: "data/loginator/res/bg.jpg"
+
+<Message>:
+	FloatLayout:
+		canvas.before:
+			Rectangle:
+				pos: self.pos
+				size: self.size
+				source: "data/loginator/res/bg.jpg"
+		Label:
+			color: 0.75, 0.75, 0.75
+			text: root.text
+			font_name: "data/friday/res/Aller.ttf"
+			texture_size: self.size
+			text_size: self.size
+			font_size: "30dp"
+			halign: 'center'
+			valign: 'middle'
+
+<Manager>:
+	id: sc_manager
+	empty: empty
+	message: message
+	transition: FadeTransition()
+	Empty:
+		id: empty
+		name: "Empty"
+		manager: sc_manager
+	Message:
+		id: message
+		name: "Message"
+		manager: sc_manager

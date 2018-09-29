@@ -1,5 +1,4 @@
 import twitter
-from modules.twitter_interface import get_token
 import pickle
 import re
 import datetime
@@ -82,6 +81,7 @@ def get_tweets(user):
 	if linked:
 		atk, ats = user["access_key"], user["access_secret"]
 	else:
+		from modules.twitter_interface import get_token
 		atk, ats = get_token.get(CONSUMER_KEY, CONSUMER_SECRET)
 
 	api = twitter.Api(consumer_key=CONSUMER_KEY,

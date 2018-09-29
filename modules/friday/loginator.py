@@ -1,5 +1,10 @@
 from kivy.app import App
 from kivy.config import Config
+Config.set('graphics', 'width', '500')
+Config.set('graphics', 'height', '640')
+Config.set('graphics', 'resizable', False)
+Config.set('kivy','window_icon','data/friday/res/icon.ico')
+#from kivy.core.window import Window
 from kivy.uix.screenmanager import ScreenManager, Screen, FadeTransition
 from kivy.properties import StringProperty, BooleanProperty
 import h5py
@@ -112,7 +117,14 @@ class Register(Screen):
 		with h5py.File(str(root_path + "data/friday/dislikes.hdf5"), "a") as file:
 			file.create_dataset(str(self.user), data=disliked)
 
-		self.message = "Account created! Restart Friday to login."
+		with h5py.File(str(root_path + "data/friday/users.hdf5"), "r") as users_file:
+			database = users_file["users"]
+			database = list(database)
+			for i in range(len(database)):
+				database[i] = [attrib.decode("utf8") for attrib in database[i]]
+			self.database = database
+
+		self.message = "Account created!"
 		self.first = ""
 		self.last = ""
 		self.user = ""
@@ -160,15 +172,10 @@ class Login(App):
 
 
 def login(user):
-	Config.set('graphics', 'width', '500')
-	Config.set('graphics', 'height', '640')
-	Config.set('graphics', 'resizable', False)
-	Config.set('kivy','window_icon','data/friday/res/icon.ico')
-	Window.__init__()
 	global g_user
 	g_user = user
 	Login().run()
-	Window.close()
+	#Window.close()
 	return g_user
 
 if __name__ == "__main__":

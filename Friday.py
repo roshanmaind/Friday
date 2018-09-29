@@ -108,6 +108,9 @@ Aborting...
 
 	user = watson.analyzer.analyze(user)
 
+	from modules.friday import greet
+	greet.greet(user)
+
 	user = engine.recommend(user)
 
 	from modules.friday import main

@@ -3,12 +3,6 @@ Builder.unload_file('modules/friday/login.kv')
 Builder.unload_file('modules/twitter_interface/permission.kv')
 from kivy.app import App
 from kivy.config import Config
-Config.set('graphics', 'width', '1120')
-Config.set('graphics', 'height', '700')
-Config.set('graphics', 'resizable', False)
-Config.set('kivy','window_icon','data/friday/res/icon.ico')
-from kivy.core.window import Window
-Window.__init__()
 from kivy.uix.screenmanager import Screen, ScreenManager
 from kivy.properties import StringProperty
 from selenium import webdriver
@@ -294,8 +288,13 @@ def run(user):
 	global userG
 	userG = user
 	userG["logged_out"] = False
+	Config.set('graphics', 'width', '1120')
+	Config.set('graphics', 'height', '700')
+	Config.set('graphics', 'resizable', False)
+	Config.set('kivy','window_icon','data/friday/res/icon.ico')
+	from kivy.core.window import Window
+	Window.__init__()
 	Friday().run()
-	Window.close()
 	user = userG
 	return user
 

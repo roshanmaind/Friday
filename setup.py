@@ -35,19 +35,19 @@ Do you wish to continue? (Y/N):''', end=" ")
 	print("\nInitiating python3-pip installation...")
 	system("sudo apt install python-pip python3-pip")
 
-        print("\nInstalling cython")
-        system("pip3 install cython")
+	print("\nInstalling cython")
+	system("pip3 install cython")
 
-        print("\nChecking firefox installation")
-        system("sudo apt install -y firefox")
+	print("\nChecking firefox installation")
+	system("sudo apt install -y firefox")
 
 	print("\nInstalling required python3 modules...")
 	system("pip3 install -r requirements.txt")
 
 	print("Modules installation finished.")
 
-        print("Installing xclip")
-        system("sudo apt install xclip -y")
+	print("Installing xclip")
+	system("sudo apt install xclip -y")
     
 	print("Installing geckodriver")
 
@@ -81,8 +81,8 @@ Do you wish to continue? (Y/N):''', end=" ")
 	if choice.upper() != "Y":
 		exit()
 
-        print("Installing cython")
-        system("pip3 install cython")
+	print("Installing cython")
+	system("pip3 install cython")
 
 	print("\nInstalling required python3 modules...")
 	system("pip3 install -r requirements.txt")
