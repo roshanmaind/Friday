@@ -105,11 +105,11 @@ class Register(Screen):
 			d = users_file.create_dataset("users", data=self.database)
 
 		liked = [[str(self.user).encode("utf8"), str("0" * 100).encode("utf8"), "".encode("utf8")]]
-		with h5py.File(str(root_path + "data/friday/liked.hdf5"), "a") as file:
+		with h5py.File(str(root_path + "data/friday/likes.hdf5"), "a") as file:
 			file.create_dataset(str(self.user), data=liked)
 
 		disliked = [[str(self.user).encode("utf8"), str("0" * 100).encode("utf8"), "".encode("utf8")]]
-		with h5py.File(str(root_path + "data/friday/disliked.hdf5"), "a") as file:
+		with h5py.File(str(root_path + "data/friday/dislikes.hdf5"), "a") as file:
 			file.create_dataset(str(self.user), data=disliked)
 
 		self.message = "Account created! Restart Friday to login."

@@ -1,5 +1,4 @@
 h5py==2.8.0
-cython==0.28.5
 kivy==1.10.1
 python_twitter==3.4.2
 requests_oauthlib==1.0.0

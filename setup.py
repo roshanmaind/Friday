@@ -22,6 +22,7 @@ This setup will install on your machine the following softwares and packages:-
 8. Selenium
 9. requests_oauthlib
 10. geckodriver
+11. xclip
 
 The softwares or packages that already exist will be skipped.
 
@@ -34,14 +35,23 @@ Do you wish to continue? (Y/N):''', end=" ")
 	print("\nInitiating python3-pip installation...")
 	system("sudo apt install python-pip python3-pip")
 
+        print("\nInstalling cython")
+        system("pip3 install cython")
+
+        print("\nChecking firefox installation")
+        system("sudo apt install -y firefox")
+
 	print("\nInstalling required python3 modules...")
 	system("pip3 install -r requirements.txt")
 
 	print("Modules installation finished.")
 
+        print("Installing xclip")
+        system("sudo apt install xclip -y")
+    
 	print("Installing geckodriver")
 
-	system("wget https://github.com/mozilla/geckodriver/releases/download/v0.22.0/geckodriver-v0.22.0-arm7hf.tar.gz")
+	system("wget https://github.com/mozilla/geckodriver/releases/download/v0.22.0/geckodriver-v0.22.0-linux64.tar.gz")
 	system("tar -xvzf geckodriver*")
 	system("chmod +x geckodriver")
 	system("echo 'export PATH=$PATH:" + getcwd() +"' >> ~/.bashrc")
@@ -70,6 +80,9 @@ Do you wish to continue? (Y/N):''', end=" ")
 	choice = input()
 	if choice.upper() != "Y":
 		exit()
+
+        print("Installing cython")
+        system("pip3 install cython")
 
 	print("\nInstalling required python3 modules...")
 	system("pip3 install -r requirements.txt")
