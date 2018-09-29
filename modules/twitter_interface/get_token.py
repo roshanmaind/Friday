@@ -72,6 +72,4 @@ def get(para_consumer_key, para_consumer_secret):
 	global consumer_secret
 	consumer_key, consumer_secret = para_consumer_key, para_consumer_secret
 	Permission().run()
-	from kivy.core.window import Window
-	Window.close()
 	return ret

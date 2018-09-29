@@ -15,6 +15,7 @@ Config.set('graphics', 'resizable', False)
 Config.set('kivy','window_icon','data/friday/res/icon.ico')
 from kivy.core.window import Window
 Window.__init__()
+Clock.__init__()
 
 userG = None
 
@@ -34,10 +35,11 @@ class Manager(ScreenManager):
 	def __init__(self, **kwargs):
 		super(ScreenManager, self).__init__(**kwargs, transition=FadeTransition())
 		Clock.schedule_once(self.change, 0.5)
+		print("scheduled message")
 
 	def change(self, dt):
 		self.current = "Message"
-		Clock.schedule_once(self.change_back, 1.5)
+		Clock.schedule_once(self.change_back, 1.75)
 
 	def change_back(self, dt):
 		self.current = "Empty"
