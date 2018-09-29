@@ -18,6 +18,7 @@ root_path = root_path[:len(root_path)- 27]
 from kivy.core.window import Window
 
 g_user = None
+dbg = None
 
 
 class Manager(ScreenManager):
@@ -38,16 +39,12 @@ class Register(Screen):
 
 	def __init__(self, **kwargs):
 		super(Register, self).__init__(**kwargs)
-		with h5py.File(str(root_path + "data/friday/users.hdf5"), "r") as users_file:
-			database = users_file["users"]
-			database = list(database)
-			for i in range(len(database)):
-				database[i] = [attrib.decode("utf8") for attrib in database[i]]
-			self.database = database
+		self.database = dbg
 
 	def sign_up_click(self):
 		global g_user
-
+		global dbg
+		self.database = dbg
 		for entry in self.database:
 			if entry[2] == self.user:
 				self.message = "Username taken. Use something else."
@@ -117,12 +114,12 @@ class Register(Screen):
 		with h5py.File(str(root_path + "data/friday/dislikes.hdf5"), "a") as file:
 			file.create_dataset(str(self.user), data=disliked)
 
-		with h5py.File(str(root_path + "data/friday/users.hdf5"), "r") as users_file:
-			database = users_file["users"]
-			database = list(database)
-			for i in range(len(database)):
-				database[i] = [attrib.decode("utf8") for attrib in database[i]]
-			self.database = database
+		for i in range(len(self.database)):
+			self.database[i] = [attrib.decode("utf8") for attrib in self.database[i]]
+
+		dbg = self.database
+		
+		print("signup", dbg)
 
 		self.message = "Account created!"
 		self.first = ""
@@ -140,16 +137,14 @@ class Signin(Screen):
 
 	def __init__(self, **kwargs):
 		super(Signin, self).__init__(**kwargs)
-		with h5py.File(str(root_path + "data/friday/users.hdf5"), "r") as users_file:
-			database = users_file["users"]
-			database = list(database)
-			for i in range(len(database)):
-				database[i] = [attrib.decode("utf8") for attrib in database[i]]
-			self.database = database
+		self.database = dbg
 		self.remember = True
 
 	def sign_in_click(self):
 		global g_user
+		global dbg
+		self.database = dbg
+		print("signin click", dbg)
 		for entry in self.database:
 			if entry[2] == self.user and entry[3] == self.passwd:
 				g_user["first_name"] = entry[0]
@@ -174,6 +169,13 @@ class Login(App):
 def login(user):
 	global g_user
 	g_user = user
+	global dbg
+	with h5py.File(str(root_path + "data/friday/users.hdf5"), "r") as users_file:
+		database = users_file["users"]
+		database = list(database)
+		for i in range(len(database)):
+			database[i] = [attrib.decode("utf8") for attrib in database[i]]
+		dbg = database
 	Login().run()
 	#Window.close()
 	return g_user
