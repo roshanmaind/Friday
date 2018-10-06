@@ -40,8 +40,16 @@ Simply run the python script "setup.py" and then to use the software, run Friday
 set PATH=%PATH%;C:\gecko\  
 7. Run the Friday.py script to use the app.  
 
-#### Android
-
+## How does it work?
+The playlist that Friday will give you is affected by 4 things.  
+1. Overall sentiment of your tweets made in the last 24 hours  
+2. Mentions of songs/genres/artists in your tweets and the sentiment of the corresponding tweet  
+3. Your likes and dislikes on songs given by Friday before  
+4. Randomness  
+These 4 things give positive or negative score points to songs. The songs with the highest score points in the end get  
+more preference over others i.e. the final score of a song gets directly translated into the probabilty of the song  
+being picked to be in the final playlist. Notice that the scores just increase the probabilities of songs being picked.  
+Still the songs will be picked arbitarily to maintain randomness in the songs being recommended
   
 ## Future updates to come
 1. Facebook connectivity.
