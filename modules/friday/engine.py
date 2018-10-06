@@ -180,7 +180,7 @@ def recommend(user):
 				"confident": (),                   ## neutral sentiment in this context
 				"tentative": ()                    ## neutral sentiment in this context
 			}
-			overall_sentiment = user["tone"]["document_tone"]["tones"]
+			overall_sentiment = user["24_hours_tone"]["document_tone"]["tones"]
 
 			for sentiment in overall_sentiment:
 				if song[2] in link[sentiment["tone_id"]]:
