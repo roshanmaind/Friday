@@ -118,8 +118,6 @@ class Register(Screen):
 			self.database[i] = [attrib.decode("utf8") for attrib in self.database[i]]
 
 		dbg = self.database
-		
-		print("signup", dbg)
 
 		self.message = "Account created!"
 		self.first = ""
@@ -144,7 +142,6 @@ class Signin(Screen):
 		global g_user
 		global dbg
 		self.database = dbg
-		print("signin click", dbg)
 		for entry in self.database:
 			if entry[2] == self.user and entry[3] == self.passwd:
 				g_user["first_name"] = entry[0]
