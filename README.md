@@ -7,7 +7,7 @@ like Twitter and your interaction with the app itself to estimate what you would
 For concerned potential users, your data is never sent to any external server. All of the data is always stored locally  
 within your device.  
   
-[Screenshots](https://github.com/roshanmaind/Friday/tree/master/data/screens) [Video](https://github.com/roshanmaind/Friday/tree/master/data/video)
+[Screenshots](https://github.com/roshanmaind/Friday/tree/master/data/screens) [Video](https://youtu.be/H6GOsiOTYLc)
 
 ## Requirements
 1. Python3  
