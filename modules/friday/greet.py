@@ -35,7 +35,7 @@ class Manager(ScreenManager):
 	def __init__(self, **kwargs):
 		super(ScreenManager, self).__init__(**kwargs, transition=FadeTransition())
 		Clock.schedule_once(self.change, 0.5)
-		print("scheduled message")
+		#print(Window.top)
 
 	def change(self, dt):
 		self.current = "Message"

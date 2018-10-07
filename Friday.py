@@ -2,6 +2,7 @@ from modules.twitter_interface import tweets
 from modules import watson
 from modules.friday import engine
 from os import system
+from sys import argv
 import os
 import pickle
 import h5py
@@ -85,6 +86,10 @@ def save_user_keys(user):
 		d = users_file.create_dataset("users", data=database)
 
 def main():
+	if argv[1].lower() == "say" and argv[2].lower() == "hi":
+		from modules.friday import greet
+		greet.greet({"first_name": "World"})
+		exit()
 	try:
 		open("twitter.keys", "rb")
 		open("watson.keys", "rb")
