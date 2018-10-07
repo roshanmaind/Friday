@@ -7,6 +7,12 @@ like Twitter and your interaction with the app itself to estimate what you would
 For concerned potential users, your data is never sent to any external server. All of the data is always stored locally  
 within your device.  
   
+## Screenshots
+[Screenshots](https://github.com/roshanmaind/Friday/tree/master/data/screens)  
+  
+## Video
+[Video](https://github.com/roshanmaind/Friday/tree/master/data/video)
+
 ## Requirements
 1. Python3  
 2. Kivy  
@@ -52,13 +58,6 @@ being picked to be in the final playlist. Notice that the scores just increase t
 Still the songs will be picked arbitarily to maintain randomness in the songs being recommended
   
 ## Future updates to come
-1. Facebook connectivity.
-2. Access to more frequently used social media services like DM.
-3. Support for Mac OS and other Linux distros besides Debian based.
-
-  
-## Screenshots
-[Screenshots](https://github.com/roshanmaind/Friday/tree/master/data/screens)  
-  
-## Video
-[Video](https://github.com/roshanmaind/Friday/tree/master/data/video)
+1. Facebook connectivity.  
+2. Access to more frequently used social media services like DM.  
+3. Support for Mac OS and other Linux distros besides Debian based.  
