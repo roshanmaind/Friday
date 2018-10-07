@@ -58,13 +58,7 @@ Still the songs will be picked arbitarily to maintain randomness in the songs be
 
   
 ## Screenshots
+[Screenshots](https://github.com/roshanmaind/Friday/tree/master/data/screens)  
   
-![1](data/screens/1.png)
-  
-![2](data/screens/2.png)
-    
-![3](data/screens/3.png)
-
-![4](data/screens/4.png)
-
-![5](data/screens/5.png)
+## Video
+[Video](https://github.com/roshanmaind/Friday/tree/master/data/video)
