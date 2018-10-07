@@ -86,7 +86,7 @@ def save_user_keys(user):
 		d = users_file.create_dataset("users", data=database)
 
 def main():
-	if argv[1].lower() == "say" and argv[2].lower() == "hi":
+	if len(argv) > 1 and argv[1].lower() == "say" and argv[2].lower() == "hi":
 		from modules.friday import greet
 		greet.greet({"first_name": "World"})
 		exit()
