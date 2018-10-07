@@ -36,19 +36,19 @@ def analyze(user):
 	global watson
 
 	tweets = user["tweets"]
-	24_hours_tweets = user["24_hours_tweets"]
+	tweets_24_hours = user["tweets_24_hours"]
 	tone_input = ""
 	for tweet in tweets:
 		tone_input = tone_input + " <p> " + tweet + " </p> "
 	try:
-		user["tone"] = watson.tone(tone_input, content_type='text/html').get_result()
+		user["tone"] = watson.tone(tone_input, content_type='text/html')
 	except WatsonApiException as we:
 		print(we)
 	tone_input = ""
-	for tweet in 24_hours_tweets:
+	for tweet in tweets_24_hours:
 		tone_input = tone_input + " <p> " + tweet + " </p> "
 	try:
-		user["24_hours_tone"] = watson.tone(tone_input, content_type='text/html').get_result()
+		user["tone_24_hours"] = watson.tone(tone_input, content_type='text/html')
 	except WatsonApiException as we:
 		print(we)
 	if "tone" in user.keys():
@@ -56,7 +56,7 @@ def analyze(user):
 		print(json.dumps(user["tone"], indent=2))
 	else:
 		print("User has no tweets")
-	if "24_hours_tone" in user.keys():
+	if "tone_24_hours" in user.keys():
 		print("Got the following tones in the user's last 24 hours tweets:")
 		print(json.dumps(user["tone"], indent=2))
 	else:

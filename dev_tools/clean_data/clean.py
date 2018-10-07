@@ -1,7 +1,7 @@
 import h5py
 from sys import argv
 
-me = ["Roshan", "Maind", "roshanmaind", "123123123", "0" * 100, ""]
+me = ["Mark", "Blank", "mark", "wasd", "0" * 100, ""]
 users = [me]
 for i in range(len(users)):
 	for j in range(6):
@@ -10,8 +10,8 @@ for i in range(len(users)):
 with h5py.File("data/friday/users.hdf5", "w") as file:
 	file.create_dataset("users", data=users)
 
-likes = [[["roshanmaind".encode("utf8"), str("0" * 100).encode("utf8"), "".encode("utf8")]]]
-dislikes = [[["roshanmaind".encode("utf8"), str("0" * 100).encode("utf8"), "".encode("utf8")]]]
+likes = [[["mark".encode("utf8"), str("0" * 100).encode("utf8"), "".encode("utf8")]]]
+dislikes = [[["mark".encode("utf8"), str("0" * 100).encode("utf8"), "".encode("utf8")]]]
 
 with h5py.File("data/friday/likes.hdf5", "w") as file:
 	for u in likes:

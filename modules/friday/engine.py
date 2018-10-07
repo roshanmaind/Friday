@@ -116,14 +116,14 @@ def recommend(user):
 			if they_do:
 				tone_ids = [t["tone_id"] for t in tones]
 				if any([pos in tone_ids for pos in positives]):
-					print(song[0], " +{} score because of positive genre mention in tweets".format(liked_genre[max(liked_genre)] + 1.5))
-					song[3] += liked_genre[max(liked_genre)] + 1.5
+					print(song[0], " +{} score because of positive genre mention in tweets".format((liked_genre[max(liked_genre)] if len(liked_genre) else 0) + 1.5))
+					song[3] += (liked_genre[max(liked_genre)] if len(liked_genre) else 0) + 1.5
 				elif any([neg in tone_ids for neg in negatives]):
 					print(song[0], " -{} score because of negative genre mention in tweets".format(0.25))
 					song[3] -= 0.25
 				else:
-					print(song[0], " +{} score because of genre mention in tweets".format(liked_genre[max(liked_genre)] + 1))
-					song[3] += liked_genre[max(liked_genre)] + 1
+					print(song[0], " +{} score because of genre mention in tweets".format((liked_genre[max(liked_genre)] if len(liked_genre) else 0) + 1))
+					song[3] += (liked_genre[max(liked_genre)] if len(liked_genre) else 0) + 1
 
 			## check the mention of this song's artist's name
 			artists = individualize([song[0].split("~")[1].strip()])
@@ -132,14 +132,14 @@ def recommend(user):
 				if they_do:
 					tone_ids = [t["tone_id"] for t in tones]
 					if any([pos in tone_ids for pos in positives]):
-						print(song[0], " +{} score because of positive artist mention in tweets".format(liked_artists[max(liked_artists)] * 3 + 4))
-						song[3] += liked_artists[max(liked_artists)] * 3 + 4
+						print(song[0], " +{} score because of positive artist mention in tweets".format((liked_artists[max(liked_artists)] if len(liked_artists) else 0) * 3 + 4))
+						song[3] += (liked_artists[max(liked_artists)] if len(liked_artists) else 0) * 3 + 4
 					elif any([neg in tone_ids for neg in negatives]):
 						print(song[0], " -{} score because of negative artist mention in tweets".format(1))
 						song[3] -= 1
 					else:
-						print(song[0], " +{} score because of artist mention in tweets".format(liked_artists[max(liked_artists)] * 3 + 3))
-						song[3] += liked_artists[max(liked_artists)] * 3 + 3
+						print(song[0], " +{} score because of artist mention in tweets".format((liked_artists[max(liked_artists)] if len(liked_artists) else 0) * 3 + 3))
+						song[3] += (liked_artists[max(liked_artists)] if len(liked_artists) else 0) * 3 + 3
 
 			## check the mention of this song's name
 			they_do, tones = tweets_have(user, song[0].split("~")[0].strip())
@@ -151,24 +151,24 @@ def recommend(user):
 					for artist in artists:
 						if artist in s[0]:
 							if any([pos in tone_ids for pos in positives]):
-								print(song[0], " +{} score because of positive song mention of same artist in tweets".format(liked_artists[max(liked_artists)] * 3 + 4))
-								s[3] += liked_artists[max(liked_artists)] * 3 + 4
+								print(song[0], " +{} score because of positive song mention of same artist in tweets".format((liked_artists[max(liked_artists)] if len(liked_artists) else 0) * 3 + 4))
+								s[3] += (liked_artists[max(liked_artists)] if len(liked_artists) else 0) * 3 + 4
 							elif any([neg in tone_ids for neg in negatives]):
 								print(song[0], " -{} score because of negative song mention of same artist in tweets".format(1))
 								s[3] -= 1
 							else:
-								print(song[0], " +{} score because of song mention of same artist in tweets".format(liked_artists[max(liked_artists)] * 3 + 2))
-								s[3] += liked_artists[max(liked_artists)] * 3 + 3
+								print(song[0], " +{} score because of song mention of same artist in tweets".format((liked_artists[max(liked_artists)] if len(liked_artists) else 0) * 3 + 2))
+								s[3] += (liked_artists[max(liked_artists)] if len(liked_artists) else 0) * 3 + 3
 					if s[2] == song[2]:
 						if any([pos in tone_ids for pos in positives]):
-							print(song[0], " +{} score because of positive song of same genre mention in tweets".format(liked_genre[max(liked_genre)] + 1.5))
-							s[3] += liked_genre[max(liked_genre)] + 1.5
+							print(song[0], " +{} score because of positive song of same genre mention in tweets".format((liked_genre[max(liked_genre)] if len(liked_genre) else 0) + 1.5))
+							s[3] += (liked_genre[max(liked_genre)] if len(liked_genre) else 0) + 1.5
 						elif any([neg in tone_ids for neg in negatives]):
 							print(song[0], " -{} score because of negative song of same genre mention in tweets".format(0.25))
 							s[3] -= 0.25
 						else:
-							print(song[0], " +{} score because of song of same genre mention in tweets".format(liked_genre[max(liked_genre)] + 1))
-							s[3] += liked_genre[max(liked_genre)] + 1
+							print(song[0], " +{} score because of song of same genre mention in tweets".format((liked_genre[max(liked_genre)] if len(liked_genre) else 0) + 1))
+							s[3] += (liked_genre[max(liked_genre)] if len(liked_genre) else 0) + 1
 
 			# overall sentiment of the tweets
 			link = {
@@ -180,7 +180,7 @@ def recommend(user):
 				"confident": (),                   ## neutral sentiment in this context
 				"tentative": ()                    ## neutral sentiment in this context
 			}
-			overall_sentiment = user["24_hours_tone"]["document_tone"]["tones"]
+			overall_sentiment = user["tone_24_hours"]["document_tone"]["tones"]
 
 			for sentiment in overall_sentiment:
 				if song[2] in link[sentiment["tone_id"]]:
@@ -227,11 +227,14 @@ def recommend(user):
 	# picking 10 songs
 	print("10 picked songs:-")
 	for i in range(10):
-		draw = random.uniform(0, 1)
-		pool = []
-		for song in all_songs:
-			if song not in user["songs"] and draw <= song[3]:
-				pool.append(song)
+		while True:
+			draw = random.uniform(0, 1)
+			pool = []
+			for song in all_songs:
+				if song not in user["songs"] and draw <= song[3]:
+					pool.append(song)
+			if len(pool) > 0:
+				break
 		idx = random.randint(0, len(pool) - 1)
 		user["songs"].append(pool[idx])
 		print("Picked", pool[idx][0], "for probability", pool[idx][3])

@@ -91,12 +91,14 @@ def get_tweets(user):
 	                  tweet_mode="extended")
 	timeline = api.GetUserTimeline()
 
-	user["tweets"] = "\n".join([re.sub("https.//t.co/[\w]+", "", stat.full_text) for stat in timeline])
+	user["tweets"] = [re.sub("https.//t.co/[\w]+", "", stat.full_text) for stat in timeline]
 	user["tweets"] = [tweet.strip() for tweet in user["tweets"]]
 	while "" in user["tweets"]:
 		user["tweets"].remove("")
-	user["24_hours_tweets"] = "\n".join([re.sub("https.//t.co/[\w]+", "", stat.full_text) for stat in timeline if TweetAge.was_made_in_last_24_hours(stat)])
-	user["24_hours_tweets"] = [tweet.strip() for tweet in user["24_hours_tweets"]]
+	user["tweets_24_hours"] = [re.sub("https.//t.co/[\w]+", "", stat.full_text) for stat in timeline if TweetAge.was_made_in_last_24_hours(stat)]
+	user["tweets_24_hours"] = [tweet.strip() for tweet in user["tweets_24_hours"]]
+	while "" in user["tweets_24_hours"]:
+		user["tweets_24_hours"].remove("")
 	user["access_key"] = atk
 	user["access_secret"] = ats
 	if len(user["tweets"]) > 0:
