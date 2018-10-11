@@ -41,14 +41,14 @@ def analyze(user):
 	for tweet in tweets:
 		tone_input = tone_input + " <p> " + tweet + " </p> "
 	try:
-		user["tone"] = watson.tone(tone_input, content_type='text/html')
+		user["tone"] = watson.tone(tone_input, content_type='text/html').get_result()
 	except WatsonApiException as we:
 		print(we)
 	tone_input = ""
 	for tweet in tweets_24_hours:
 		tone_input = tone_input + " <p> " + tweet + " </p> "
 	try:
-		user["tone_24_hours"] = watson.tone(tone_input, content_type='text/html')
+		user["tone_24_hours"] = watson.tone(tone_input, content_type='text/html').get_result()
 	except WatsonApiException as we:
 		print(we)
 	if "tone" in user.keys():
