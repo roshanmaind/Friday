@@ -52,7 +52,7 @@ Do you wish to continue? (Y/N):''', end=" ")
 	print("Installing geckodriver")
 
 	system("wget https://github.com/mozilla/geckodriver/releases/download/v0.22.0/geckodriver-v0.22.0-linux64.tar.gz")
-	system("tar -xvzf geckodriver*")
+	system("tar -xvzf geckodriver-v0.22.0-linux64.tar.gz")
 	system("chmod +x geckodriver")
 	system("echo 'export PATH=$PATH:" + getcwd() +"' >> ~/.bashrc")
 
